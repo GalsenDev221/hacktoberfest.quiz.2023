@@ -106,6 +106,11 @@ const questions = [
     correctAnswer: 1,
   },
   {
+    question: "comment créer une branche git ?",
+    options: ["git merge", "git checkout -b ma-nouvelle-branche", "git rebase"],
+    correctAnswer: 1,
+  },
+  {
     question: "Hacktoberfest est ii necessaire ?",
     options: ["Oui", "Non"],
     correctAnswer: 0,
@@ -122,10 +127,7 @@ function sweetAlertEl() {
     'success'
     )
   })
-  
-  
 }
-
 
 let currentQuestion = 0;
 let score = 0;
@@ -135,8 +137,6 @@ let numberOfClick = 0;
 const questionElement = document.getElementById("question");
 const optionsElement = document.getElementById("options");
 const scoreElement = document.getElementById("score");
-
-
 
 function loadQuestion() {
 	const question = questions[currentQuestion];
@@ -237,5 +237,28 @@ function checkAnswer(selectedIndex, currentList) {
 		scoreElement.textContent = score;
 	}
 }
+
+// loadQuestion();
+
+const resetButton = document.getElementById("reset-button");
+
+resetButton.addEventListener("click", () => {
+  currentQuestion = 0;
+  score = 0;
+  loadQuestion();
+  scoreElement.textContent = score;
+});
+
+const sweetAlertButton = document.getElementById("sweet-alert-button");
+
+// Ajoutez un gestionnaire d'événement pour le clic sur le bouton
+sweetAlertButton.addEventListener("click", () => {
+  Swal.fire({
+    title: 'Ceci est un SweetAlert',
+    text: 'C\'est une boîte de dialogue SweetAlert personnalisée !',
+    icon: 'success',
+    confirmButtonText: 'OK'  // Correction de la syntaxe ici
+  });
+});
 
 loadQuestion();

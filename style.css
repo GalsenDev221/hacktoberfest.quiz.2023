@@ -8,6 +8,11 @@ body {
   justify-content: center;
 }
 
+h1 {
+  font-size: 24px;
+  color: #007BFF;
+}
+
 #quiz-container {
   max-width: 400px;
   margin: 0 auto;
@@ -37,7 +42,7 @@ li {
   cursor: pointer;
   padding: 10px;
   border: 1px solid #ccc;
-  margin: 5px;
+  margin: 30px;
   border-radius: 5px;
   transition: all ease 200ms;
 }
@@ -46,4 +51,34 @@ li:hover {
 }
 .active{
   background-color: #ddd;
+}
+
+#reset-button {
+  background-color: #0056b3;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#sweet-alert-button{
+  background-color: #0056b3;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#sweet-alert-button:hover{
+  background-color: #007BFF;
+}
+
+#reset-button:hover {
+  background-color: #007BFF;
 }
