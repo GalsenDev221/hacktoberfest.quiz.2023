@@ -50,13 +50,13 @@ function loadQuestion() {
   });
 }
 
-function checkAnswer(selectedIndex, currentLi) {
+function checkAnswer(selectedIndex, currentList) {
   const question = questions[currentQuestion];
 
 
   if (Array.isArray(question.correctAnswer)) {
     numberOfClick++
-    currentLi.classList.add("active");
+    currentList.classList.add("active");
 
     if (question.correctAnswer.includes(selectedIndex)) {
       correctAnswers++
