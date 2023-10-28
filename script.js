@@ -36,6 +36,11 @@ const questions = [
     correctAnswer: 0,
   },
   {
+    question: "Quel type de projets peut être éligible pour le Hacktoberfest ?",
+    options: ["Seuls les projets en Python.", "Les projets en Python et JavaScript.", "Tout projet open source qui accepte des contributions."],
+    correctAnswer: 2,
+  },
+  {
     question: "Combien de temps dure l'evenement Hacktoberfest ?",
     options: ["1 ans", "1 mois", "1 week-end"],
     correctAnswer: 1,
