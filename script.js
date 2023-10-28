@@ -6,7 +6,7 @@ const questions = [
   },
   {
     question: "Où pouvez-vous contribuer pour participer au Hacktoberfest ?",
-    options: ["AWS", "Facebook", "GitHub", "DigitaOcean"],
+    options: ["AWS", "Facebook", "GitHub", "DigitalOcean"],
     correctAnswer: 2,
   },
   {
