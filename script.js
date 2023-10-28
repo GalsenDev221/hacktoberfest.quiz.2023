@@ -40,6 +40,11 @@ const questions = [
     options: ["1 ans", "1 mois", "1 week-end"],
     correctAnswer: 1,
   },
+  {
+    question: "Comment puis-je célébrer la réussite du Hacktoberfest ?",
+    options: ["En publiant un tweet sur votre expérience.", "En organisant une grande fête.", "En partageant vos réalisations sur les médias sociaux, en rejoignant des événements communautaires, ou en obtenant un t-shirt Hacktoberfest."],
+    correctAnswer: 2,
+  },
 ];
 
 let currentQuestion = 0;
