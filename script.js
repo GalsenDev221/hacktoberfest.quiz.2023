@@ -76,9 +76,29 @@ const questions = [
     correctAnswer: 0,
   },
   {
+    question: "Quel type de projets peut être éligible pour le Hacktoberfest ?",
+    options: ["Seuls les projets en Python.", "Les projets en Python et JavaScript.", "Tout projet open source qui accepte des contributions."],
+    correctAnswer: 2,
+  },
+  {
     question: "Combien de temps dure l'evenement Hacktoberfest ?",
     options: ["1 ans", "1 mois", "1 week-end"],
     correctAnswer: 1,
+  },
+  {
+    question: "Où pouvez-vous trouver des projets open source éligibles pour le Hacktoberfest ?",
+    options: ["Uniquement sur GitHub.", "Sur GitHub, GitLab, et Bitbucket.", "Nulle part, ils sont tenus secrets."],
+    correctAnswer: 1,
+  },
+  {
+    question: "Qu'est-ce qu'une Pull Request (demande de fusion) ?",
+    options: ["Un ensemble de modifications suggérées pour un projet open source.", "Une demande de fusion de branches dans Git.", "Une demande pour fusionner deux projets open source."],
+    correctAnswer: 0,
+  },
+  {
+    question: "Comment puis-je célébrer la réussite du Hacktoberfest ?",
+    options: ["En publiant un tweet sur votre expérience.", "En organisant une grande fête.", "En partageant vos réalisations sur les médias sociaux, en rejoignant des événements communautaires, ou en obtenant un t-shirt Hacktoberfest."],
+    correctAnswer: 2,
   },
    {
     question: "Combien de temps dure l'evenement Hacktoberfest ?",
