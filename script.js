@@ -19,7 +19,13 @@ const questions = [
     question: "Quelles sont les deux langues officielles du Canada ? (choix multiple)",
     options: ["Français", "Anglais", "Espagnol", "Allemand"],
     correctAnswer: [0, 1],
+  },
+  {
+    question: "Est-ce ce que GitLab participe au Hacktoberfest ?",
+    options: ["Oui", "Non"],
+    correctAnswer: 0,
   }
+  ,
 ];
 
 let currentQuestion = 0;
