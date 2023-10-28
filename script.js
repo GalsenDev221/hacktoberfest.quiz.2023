@@ -51,7 +51,8 @@ const questions = [
     correctAnswer: 3,
   },
   {
-    question: "Quelles sont les deux langues officielles du Canada ? (choix multiple)",
+    question:
+      "Quelles sont les deux langues officielles du Canada ? (choix multiple)",
     options: ["Français", "Anglais", "Espagnol", "Allemand"],
     correctAnswer: [0, 1],
   },
@@ -67,10 +68,14 @@ const questions = [
   },
   {
     question: "Quel est l'objectif principal du Hacktoberfest ?",
-    options: ["Célébrer Halloween", "Promouvoir la consommation de citrouilles", "Encourager la contribution à des projets open source"],
+    options: [
+      "Célébrer Halloween",
+      "Promouvoir la consommation de citrouilles",
+      "Encourager la contribution à des projets open source",
+    ],
     correctAnswer: 2,
-   },
-   {
+  },
+  {
     question: "Quelle societe a cree le hacktoberfest ?",
     options: ["DigitalOcean", "Microsoft", "galsenDev", "xarala"],
     correctAnswer: 0,
@@ -86,8 +91,13 @@ const questions = [
     correctAnswer: 1,
   },
   {
-    question: "Où pouvez-vous trouver des projets open source éligibles pour le Hacktoberfest ?",
-    options: ["Uniquement sur GitHub.", "Sur GitHub, GitLab, et Bitbucket.", "Nulle part, ils sont tenus secrets."],
+    question: "Il reste combien de jours pour valider le Hacktoberfest actuel ?",
+    options: [31 - new Date().getDate(), "2", "8", "20"],
+    correctAnswer: 0,
+  },
+  {
+    question: "En qu'elle année le Hacktoberfest a commencé ?",
+    options: ["2013", "2015","2018", "2010"],
     correctAnswer: 1,
   },
   {
@@ -186,7 +196,9 @@ function checkAnswer(selectedIndex, li) {
   question.options.forEach((option, index) => {
     const li = document.createElement("li");
     li.textContent = option;
-    li.addEventListener("click", function () { return checkAnswer(index, this) });
+    li.addEventListener("click", function () {
+      return checkAnswer(index, this);
+    });
     optionsElement.appendChild(li);
   });
 }
@@ -195,21 +207,20 @@ function checkAnswer(selectedIndex, li) {
 function checkAnswer(selectedIndex, currentList) {
   const question = questions[currentQuestion];
 
-
   if (Array.isArray(question.correctAnswer)) {
-    numberOfClick++
+    numberOfClick++;
     currentList.classList.add("active");
 
     if (question.correctAnswer.includes(selectedIndex)) {
-      correctAnswers++
+      correctAnswers++;
     }
     if (numberOfClick === question.correctAnswer.length) {
       if (correctAnswers === question.correctAnswer.length) {
-        score++
-        scoreElement.innerText = score
+        score++;
+        scoreElement.innerText = score;
       }
-      numberOfClick = 0
-      correctAnswers = 0
+      numberOfClick = 0;
+      correctAnswers = 0;
       currentQuestion++;
       if (currentQuestion < questions.length) {
         loadQuestion();
@@ -219,12 +230,12 @@ function checkAnswer(selectedIndex, currentList) {
         scoreElement.textContent = score;
       }
     }
-    return
+    return;
   }
 
   if (selectedIndex === question.correctAnswer) {
     score++;
-    scoreElement.innerText = score
+    scoreElement.innerText = score;
   }
 
 	currentQuestion++;
