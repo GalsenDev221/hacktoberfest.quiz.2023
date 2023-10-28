@@ -41,6 +41,11 @@ const questions = [
     correctAnswer: 1,
   },
   {
+    question: "Où pouvez-vous trouver des projets open source éligibles pour le Hacktoberfest ?",
+    options: ["Uniquement sur GitHub.", "Sur GitHub, GitLab, et Bitbucket.", "Nulle part, ils sont tenus secrets."],
+    correctAnswer: 1,
+  },
+  {
     question: "Comment puis-je célébrer la réussite du Hacktoberfest ?",
     options: ["En publiant un tweet sur votre expérience.", "En organisant une grande fête.", "En partageant vos réalisations sur les médias sociaux, en rejoignant des événements communautaires, ou en obtenant un t-shirt Hacktoberfest."],
     correctAnswer: 2,
