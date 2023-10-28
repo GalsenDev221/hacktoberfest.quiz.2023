@@ -37,6 +37,31 @@ const questions = [
   },
 ];
 
+// function sweetAlertEl(){
+//   const btnEl=document.getElementById('btn-btn-envoyer')
+//   btnEl.addEventListener('click',()=>{
+//     Swal.fire(
+//       'merci!',
+//       'vous avez repondu avec succée les questions!',
+//       'success'
+//     )
+//   })
+
+// }
+function sweetAlertEl() {
+  const btnEl=document.getElementById('btn-btn-envoyer')
+  btnEl.addEventListener('click',()=>{
+    Swal.fire(
+      'Merci!',
+      'vous avez repondu avec succée les questions!',
+    'success'
+    )
+  })
+  
+  
+}
+
+
 let currentQuestion = 0;
 let score = 0;
 let correctAnswers = 0
@@ -46,17 +71,7 @@ const questionElement = document.getElementById("question");
 const optionsElement = document.getElementById("options");
 const scoreElement = document.getElementById("score");
 
-function sweetAlertEl(){
-  const btnEl=document.getElementById('btn-btn-envoyer')
-  // btnEl.addEventListener('click',()=>{
-    Swal.fire(
-      'merci!',
-      'vous avez repondu avec succée les questions!',
-      'success'
-    )
-  // })
 
-}
 
 function loadQuestion() {
   const question = questions[currentQuestion];
@@ -70,6 +85,7 @@ function loadQuestion() {
     optionsElement.appendChild(li);
   });
 }
+
 
 function checkAnswer(selectedIndex, currentList) {
   const question = questions[currentQuestion];

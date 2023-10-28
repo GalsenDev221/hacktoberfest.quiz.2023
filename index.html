@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Inclure SweetAlert -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="style.css" />
     <title>Hacktoberfest Quiz 2023</title>
   </head>
@@ -13,7 +16,7 @@
       <p id="question"></p>
       <ul id="options"></ul>
       <p>Score : <span id="score">0</span></p>
-      <button id="btn-btn-envoyer" onclick="sweetAlertEl();">Envoyer</button>
+      <button id="btn-btn-envoyer" onclick="sweetAlertEl()">Envoyer</button>
     </div>
     <script src="script.js"></script>
   </body>
