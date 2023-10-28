@@ -26,6 +26,11 @@ const questions = [
     correctAnswer: 0,
   },
   {
+    question: "Quel est l'objectif principal du Hacktoberfest ?",
+    options: ["Célébrer Halloween", "Promouvoir la consommation de citrouilles", "Encourager la contribution à des projets open source"],
+    correctAnswer: 2,
+   },
+   {
     question: "Quelle societe a cree le hacktoberfest ?",
     options: ["DigitalOcean", "Microsoft", "galsenDev", "xarala"],
     correctAnswer: 0,
