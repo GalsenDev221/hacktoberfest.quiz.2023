@@ -46,6 +46,18 @@ const questionElement = document.getElementById("question");
 const optionsElement = document.getElementById("options");
 const scoreElement = document.getElementById("score");
 
+function sweetAlertEl(){
+  const btnEl=document.getElementById('btn-btn-envoyer')
+  // btnEl.addEventListener('click',()=>{
+    Swal.fire(
+      'merci!',
+      'vous avez repondu avec succée les questions!',
+      'success'
+    )
+  // })
+
+}
+
 function loadQuestion() {
   const question = questions[currentQuestion];
   questionElement.textContent = question.question;
