@@ -61,6 +61,11 @@ const questions = [
     correctAnswer: 0,
   },
   {
+    question: "Quelle est la principale motivation derrière le Hacktoberfest ?",
+    options: ["Célébrer la fête d'Halloween", "Promouvoir la consommation de citrouilles", "Encourager la contribution à des projets open source", "Organiser des compétitions de piratage informatique"],
+    correctAnswer: 2
+  },
+  {
     question: "Quel est l'objectif principal du Hacktoberfest ?",
     options: ["Célébrer Halloween", "Promouvoir la consommation de citrouilles", "Encourager la contribution à des projets open source"],
     correctAnswer: 2,
