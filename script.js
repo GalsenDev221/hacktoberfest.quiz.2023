@@ -29,6 +29,16 @@ const questions = [
     question: "Quel est l'objectif principal du Hacktoberfest ?",
     options: ["Célébrer Halloween", "Promouvoir la consommation de citrouilles", "Encourager la contribution à des projets open source"],
     correctAnswer: 2,
+   },
+   {
+    question: "Quelle societe a cree le hacktoberfest ?",
+    options: ["DigitalOcean", "Microsoft", "galsenDev", "xarala"],
+    correctAnswer: 0,
+  },
+  {
+    question: "Combien de temps dure l'evenement Hacktoberfest ?",
+    options: ["1 ans", "1 mois", "1 week-end"],
+    correctAnswer: 1,
   },
 ];
 
@@ -49,40 +59,44 @@ function loadQuestion() {
   question.options.forEach((option, index) => {
     const li = document.createElement("li");
     li.textContent = option;
-    li.addEventListener("click", () => checkAnswer(index, li));
+    li.addEventListener("click", function () { return checkAnswer(index, this) });
     optionsElement.appendChild(li);
   });
 }
 
-function checkAnswer(selectedIndex, li) {
+function checkAnswer(selectedIndex, currentList) {
   const question = questions[currentQuestion];
+
 
   if (Array.isArray(question.correctAnswer)) {
     numberOfClick++
-    li.classList.add("active")
+    currentList.classList.add("active");
+
     if (question.correctAnswer.includes(selectedIndex)) {
       correctAnswers++
     }
     if (numberOfClick === question.correctAnswer.length) {
       if (correctAnswers === question.correctAnswer.length) {
         score++
+        scoreElement.innerText = score
       }
       numberOfClick = 0
       correctAnswers = 0
       currentQuestion++;
-    }
-    if (currentQuestion < questions.length) {
-      loadQuestion();
-    } else {
-      questionElement.textContent = "Quiz terminé ! Votre score :";
-      optionsElement.innerHTML = "";
-      scoreElement.textContent = score;
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+      } else {
+        questionElement.textContent = "Quiz terminé ! Votre score :";
+        optionsElement.innerHTML = "";
+        scoreElement.textContent = score;
+      }
     }
     return
   }
 
   if (selectedIndex === question.correctAnswer) {
     score++;
+    scoreElement.innerText = score
   }
 
   currentQuestion++;
