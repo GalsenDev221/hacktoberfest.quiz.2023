@@ -3,6 +3,14 @@ body {
   text-align: center;
 }
 
+#button{
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+.active{
+  background: #12cf15;
+}
 #quiz-container {
   max-width: 400px;
   margin: 0 auto;
@@ -24,5 +32,5 @@ li {
   border-radius: 5px;
 }
 li:hover {
-  background-color: #ddd;
+  background: #12cf15;
 }
