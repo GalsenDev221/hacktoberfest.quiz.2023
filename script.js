@@ -105,4 +105,13 @@ function checkAnswer(selectedIndex, currentList) {
   }
 }
 
-loadQuestion();
+// loadQuestion();
+
+const resetButton = document.getElementById("reset-button");
+
+resetButton.addEventListener("click", () => {
+  currentQuestion = 0;
+  score = 0;
+  loadQuestion();
+  scoreElement.textContent = score;
+});

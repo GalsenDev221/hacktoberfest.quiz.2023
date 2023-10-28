@@ -3,6 +3,11 @@ body {
   text-align: center;
 }
 
+h1 {
+  font-size: 24px;
+  color: #007BFF;
+}
+
 #quiz-container {
   max-width: 400px;
   margin: 0 auto;
@@ -29,4 +34,21 @@ li:hover {
 }
 .active{
   background-color: #ddd;
+}
+
+#reset-button {
+  background-color: #007BFF;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  
+ 
+margin-top: 20px;
+}
+
+#reset-button:hover {
+  background-color: #0056b3;
 }
