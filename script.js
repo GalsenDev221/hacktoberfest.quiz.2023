@@ -15,6 +15,11 @@ const questions = [
     options: ["10", "2", "6", "4"],
     correctAnswer: 3,
   },
+  {
+    question: "Est-ce ce que GitLab participe au Hacktoberfest ?",
+    options: ["Oui", "Non"],
+    correctAnswer: 0,
+  },
 ];
 
 let currentQuestion = 0;
