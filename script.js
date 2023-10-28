@@ -80,6 +80,16 @@ const questions = [
     options: ["1 ans", "1 mois", "1 week-end"],
     correctAnswer: 1,
   },
+   {
+    question: "Combien de temps dure l'evenement Hacktoberfest ?",
+    options: ["1 ans", "1 mois", "1 week-end"],
+    correctAnswer: 1,
+  },
+  {
+    question: "Hacktoberfest est ii necessaire ?",
+    options: ["Oui", "Non"],
+    correctAnswer: 0,
+  },
 ];
 
 let currentQuestion = 0;
