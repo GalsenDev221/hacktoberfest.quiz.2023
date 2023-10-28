@@ -141,17 +141,21 @@ function sweetAlertEl() {
 
 let currentQuestion = 0;
 let score = 0;
-let correctAnswers = 0;
-let numberOfClick = 0;
+let correctAnswers = 0
+let numberOfClick = 0
+let timeElapsed = 0;
+const rejouerBtn = document.querySelector('#rejouer');
+
 
 const questionElement = document.getElementById("question");
 const optionsElement = document.getElementById("options");
 const scoreElement = document.getElementById("score");
 
 function loadQuestion() {
-	const question = questions[currentQuestion];
-	questionElement.textContent = question.question;
-	optionsElement.innerHTML = "";
+  timeElapsed = 0;
+  const question = questions[currentQuestion];
+  questionElement.textContent = question.question;
+  optionsElement.innerHTML = "";
 
 	question.options.forEach((option, index) => {
 		const li = document.createElement("li");
@@ -201,6 +205,7 @@ function checkAnswer(selectedIndex, li) {
     });
     optionsElement.appendChild(li);
   });
+  checkTimeElapsed();
 }
 
 
@@ -233,6 +238,7 @@ function checkAnswer(selectedIndex, currentList) {
     return;
   }
 
+
   if (selectedIndex === question.correctAnswer) {
     score++;
     scoreElement.innerText = score;
@@ -248,8 +254,6 @@ function checkAnswer(selectedIndex, currentList) {
 		scoreElement.textContent = score;
 	}
 }
-
-// loadQuestion();
 
 const resetButton = document.getElementById("reset-button");
 
