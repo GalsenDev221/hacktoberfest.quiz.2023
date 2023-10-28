@@ -37,17 +37,7 @@ const questions = [
   },
 ];
 
-// function sweetAlertEl(){
-//   const btnEl=document.getElementById('btn-btn-envoyer')
-//   btnEl.addEventListener('click',()=>{
-//     Swal.fire(
-//       'merci!',
-//       'vous avez repondu avec succée les questions!',
-//       'success'
-//     )
-//   })
 
-// }
 function sweetAlertEl() {
   const btnEl=document.getElementById('btn-btn-envoyer')
   btnEl.addEventListener('click',()=>{
