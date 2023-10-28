@@ -47,8 +47,6 @@ function loadQuestion() {
 function checkAnswer(selectedIndex, li) {
   const question = questions[currentQuestion];
 
-  const numberOfChoice = question.correctAnswer
-
   if (Array.isArray(question.correctAnswer)) {
     numberOfClick++
     li.classList.add("active")
@@ -59,6 +57,8 @@ function checkAnswer(selectedIndex, li) {
       if (correctAnswers === question.correctAnswer.length) {
         score++
       }
+      numberOfClick = 0
+      correctAnswers = 0
       currentQuestion++;
     }
     if (currentQuestion < questions.length) {
