@@ -37,7 +37,6 @@ li:hover {
 }
 
 #reset-button {
-  
   background-color: #0056b3;
   color: #FFFFFF;
   border: none;
@@ -45,9 +44,22 @@ li:hover {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  
- 
-margin-top: 20px;
+  margin-top: 20px;
+}
+
+#sweet-alert-button{
+  background-color: #0056b3;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#sweet-alert-button:hover{
+  background-color: #007BFF;
 }
 
 #reset-button:hover {

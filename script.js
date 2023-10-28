@@ -35,6 +35,11 @@ const questions = [
     options: ["1 ans", "1 mois", "1 week-end"],
     correctAnswer: 1,
   },
+  {
+    question: "comment créer une branche git ?",
+    options: ["git merge", "git checkout -b ma-nouvelle-branche", "git rebase"],
+    correctAnswer: 1,
+  },
 ];
 
 let currentQuestion = 0;
@@ -127,4 +132,6 @@ sweetAlertButton.addEventListener("click", () => {
     confirmButtonText: 'OK'  // Correction de la syntaxe ici
   });
 });
+
+
 
