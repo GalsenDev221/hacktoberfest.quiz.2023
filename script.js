@@ -98,6 +98,7 @@ function checkAnswer(selectedIndex, currentList) {
     return
   }
 
+
   if (selectedIndex === question.correctAnswer) {
     score++;
     scoreElement.innerText = score
