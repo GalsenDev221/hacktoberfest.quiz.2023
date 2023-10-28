@@ -57,7 +57,7 @@ function checkAnswer(selectedIndex, li) {
     numberOfClick++
     li.classList.add("active")
     if (question.correctAnswer.includes(selectedIndex)) {
-      correctAnswers++
+      correctAnswers++;
     }
     if (numberOfClick === question.correctAnswer.length) {
       if (correctAnswers === question.correctAnswer.length) {
@@ -79,6 +79,7 @@ function checkAnswer(selectedIndex, li) {
 
   if (selectedIndex === question.correctAnswer) {
     score++;
+    scoreElement.textContent = score;
   }
 
   currentQuestion++;
