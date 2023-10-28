@@ -34,7 +34,7 @@ const questions = [
 
 let currentQuestion = 0;
 let score = 0;
-let correctAnswers = 0
+let correctAnswerCounter = 0
 let numberOfClick = 0
 
 const questionElement = document.getElementById("question");
@@ -63,14 +63,14 @@ function checkAnswer(selectedIndex, currentList) {
     currentList.classList.add("active");
 
     if (question.correctAnswer.includes(selectedIndex)) {
-      correctAnswers++
+      correctAnswerCounter++
     }
     if (numberOfClick === question.correctAnswer.length) {
-      if (correctAnswers === question.correctAnswer.length) {
+      if (correctAnswerCounter === question.correctAnswer.length) {
         score++
       }
       numberOfClick = 0
-      correctAnswers = 0
+      correctAnswerCounter = 0
       currentQuestion++;
       if (currentQuestion < questions.length) {
         loadQuestion();
