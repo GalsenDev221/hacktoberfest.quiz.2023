@@ -151,13 +151,11 @@ function checkAnswer(selectedIndex, li) {
 			numberOfClick = 0;
 			correctAnswers = 0;
 			currentQuestion++;
-		}
-		if (currentQuestion < questions.length) {
-			loadQuestion();
-		} else {
-			questionElement.textContent = "Quiz terminé ! Votre score :";
-			optionsElement.innerHTML = "";
-			scoreElement.textContent = score;
+			if (currentQuestion < questions.length) {
+				loadQuestion();
+			} else {
+				quizFinished();
+			}
 		}
 		return;
 	}
@@ -166,58 +164,20 @@ function checkAnswer(selectedIndex, li) {
 		score++;
 		scoreElement.textContent = score;
 	}
-  question.options.forEach((option, index) => {
-    const li = document.createElement("li");
-    li.textContent = option;
-    li.addEventListener("click", function () { return checkAnswer(index, this) });
-    optionsElement.appendChild(li);
-  });
-}
-
-function checkAnswer(selectedIndex, currentList) {
-  const question = questions[currentQuestion];
-
-
-  if (Array.isArray(question.correctAnswer)) {
-    numberOfClick++
-    currentList.classList.add("active");
-
-    if (question.correctAnswer.includes(selectedIndex)) {
-      correctAnswers++
-    }
-    if (numberOfClick === question.correctAnswer.length) {
-      if (correctAnswers === question.correctAnswer.length) {
-        score++
-        scoreElement.innerText = score
-      }
-      numberOfClick = 0
-      correctAnswers = 0
-      currentQuestion++;
-      if (currentQuestion < questions.length) {
-        loadQuestion();
-      } else {
-        questionElement.textContent = "Quiz terminé ! Votre score :";
-        optionsElement.innerHTML = "";
-        scoreElement.textContent = score;
-      }
-    }
-    return
-  }
-
-  if (selectedIndex === question.correctAnswer) {
-    score++;
-    scoreElement.innerText = score
-  }
 
 	currentQuestion++;
 
 	if (currentQuestion < questions.length) {
 		loadQuestion();
 	} else {
-		questionElement.textContent = "Quiz terminé ! Votre score :";
-		optionsElement.innerHTML = "";
-		scoreElement.textContent = score;
+		quizFinished();
 	}
+}
+
+function quizFinished() {
+	questionElement.textContent = "Quiz terminé ! Votre score :";
+	optionsElement.innerHTML = "";
+	scoreElement.textContent = score;
 }
 
 loadQuestion();
