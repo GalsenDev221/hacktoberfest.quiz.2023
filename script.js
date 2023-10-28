@@ -46,6 +46,7 @@ let currentQuestion = 0;
 let score = 0;
 let correctAnswers = 0
 let numberOfClick = 0
+let timeElapsed = 0;
 const rejouerBtn = document.querySelector('#rejouer');
 
 const questionElement = document.getElementById("question");
@@ -53,6 +54,7 @@ const optionsElement = document.getElementById("options");
 const scoreElement = document.getElementById("score");
 
 function loadQuestion() {
+  timeElapsed = 0;
   const question = questions[currentQuestion];
   questionElement.textContent = question.question;
   optionsElement.innerHTML = "";
@@ -63,6 +65,7 @@ function loadQuestion() {
     li.addEventListener("click", function () { return checkAnswer(index, this) });
     optionsElement.appendChild(li);
   });
+  checkTimeElapsed();
 }
 
 function checkAnswer(selectedIndex, currentList) {
@@ -125,4 +128,20 @@ function resetGame() {
   numberOfClick = 0;
   scoreElement.innerText = score;
   loadQuestion();
+}
+
+function checkTimeElapsed() {
+  if (timeElapsed >= 10) {
+    currentQuestion++;
+    if (currentQuestion < questions.length) {
+      loadQuestion();
+    } else {
+      questionElement.textContent = "Quiz terminé ! Votre score :";
+      optionsElement.innerHTML = "";
+      scoreElement.textContent = score;
+    }
+  } else {
+    setTimeout(checkTimeElapsed, 1000); 
+    timeElapsed++;
+  }
 }
