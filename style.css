@@ -15,6 +15,18 @@ body {
   background-color: #f5f5f5;
   border-radius: 8px;
 }
+summary::after {
+  content: "\f138"; /* Code de l'icône Font Awesome */
+  font-family: "Font Awesome 5 Free"; /* Famille de police de caractères de Font Awesome */
+  margin-right: 10px; /* Espace entre l'icône et le texte du résumé */
+  font-weight: bold; /* Pour assurer une meilleure lisibilité */
+}
+
+details summary::-webkit-details-marker,
+details summary::-moz-details-marker,
+details summary::before {
+  display: none; /* Masquer l'icône par défaut */
+}
 
 ul {
   list-style: none;
