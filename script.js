@@ -39,17 +39,19 @@ function loadQuestion() {
   question.options.forEach((option, index) => {
     const li = document.createElement("li");
     li.textContent = option;
-    li.addEventListener("click", () => checkAnswer(index, li));
+    li.addEventListener("click", function () { return checkAnswer(index, this) });
     optionsElement.appendChild(li);
   });
 }
 
-function checkAnswer(selectedIndex, li) {
+function checkAnswer(selectedIndex, currentLi) {
   const question = questions[currentQuestion];
+
 
   if (Array.isArray(question.correctAnswer)) {
     numberOfClick++
-    li.classList.add("active")
+    currentLi.classList.add("active");
+
     if (question.correctAnswer.includes(selectedIndex)) {
       correctAnswers++
     }
@@ -60,13 +62,13 @@ function checkAnswer(selectedIndex, li) {
       numberOfClick = 0
       correctAnswers = 0
       currentQuestion++;
-    }
-    if (currentQuestion < questions.length) {
-      loadQuestion();
-    } else {
-      questionElement.textContent = "Quiz terminé ! Votre score :";
-      optionsElement.innerHTML = "";
-      scoreElement.textContent = score;
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+      } else {
+        questionElement.textContent = "Quiz terminé ! Votre score :";
+        optionsElement.innerHTML = "";
+        scoreElement.textContent = score;
+      }
     }
     return
   }
