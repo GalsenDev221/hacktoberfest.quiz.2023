@@ -73,6 +73,7 @@ function checkAnswer(selectedIndex, currentList) {
     if (numberOfClick === question.correctAnswer.length) {
       if (correctAnswers === question.correctAnswer.length) {
         score++
+        scoreElement.innerText = score
       }
       numberOfClick = 0
       correctAnswers = 0
@@ -90,6 +91,7 @@ function checkAnswer(selectedIndex, currentList) {
 
   if (selectedIndex === question.correctAnswer) {
     score++;
+    scoreElement.innerText = score
   }
 
   currentQuestion++;
