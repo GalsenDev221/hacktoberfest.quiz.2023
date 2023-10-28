@@ -51,6 +51,11 @@ const questions = [
     correctAnswer: 1,
   },
   {
+    question: "Qu'est-ce qu'une Pull Request (demande de fusion) ?",
+    options: ["Un ensemble de modifications suggérées pour un projet open source.", "Une demande de fusion de branches dans Git.", "Une demande pour fusionner deux projets open source."],
+    correctAnswer: 0,
+  },
+  {
     question: "Comment puis-je célébrer la réussite du Hacktoberfest ?",
     options: ["En publiant un tweet sur votre expérience.", "En organisant une grande fête.", "En partageant vos réalisations sur les médias sociaux, en rejoignant des événements communautaires, ou en obtenant un t-shirt Hacktoberfest."],
     correctAnswer: 2,
