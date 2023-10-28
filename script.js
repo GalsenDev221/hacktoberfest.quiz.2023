@@ -142,7 +142,10 @@ function checkAnswer(selectedIndex, li) {
 		li.classList.add("active");
 		if (question.correctAnswer.includes(selectedIndex)) {
 			correctAnswers++;
-		}
+      li.style.backgroundColor = "#57F287";
+		} else{
+      li.style.backgroundColor = '#FD6D72';
+    }
 		if (numberOfClick === question.correctAnswer.length) {
 			if (correctAnswers === question.correctAnswer.length) {
 				score++;
@@ -152,7 +155,7 @@ function checkAnswer(selectedIndex, li) {
 			correctAnswers = 0;
 			currentQuestion++;
 			if (currentQuestion < questions.length) {
-				loadQuestion();
+				setTimeout(loadQuestion, 1000);
 			} else {
 				quizFinished();
 			}
@@ -163,12 +166,15 @@ function checkAnswer(selectedIndex, li) {
 	if (selectedIndex === question.correctAnswer) {
 		score++;
 		scoreElement.textContent = score;
-	}
+    li.style.backgroundColor = "#57F287";
+	} else{
+    li.style.backgroundColor = '#FD6D72';
+  }
 
 	currentQuestion++;
 
 	if (currentQuestion < questions.length) {
-		loadQuestion();
+		setTimeout(loadQuestion, 1000);
 	} else {
 		quizFinished();
 	}
