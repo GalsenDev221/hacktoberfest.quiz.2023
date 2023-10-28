@@ -46,7 +46,7 @@ const questions = [
     correctAnswer: 1,
   },
   {
-    question: "Hacktoberfest a quel interet ?",
+    question: "Hacktoberfest est ii necessaire ?",
     options: ["Oui", "Non"],
     correctAnswer: 0,
   },
