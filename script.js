@@ -24,6 +24,16 @@ const questions = [
 		options: ["Oui", "Non"],
 		correctAnswer: 0,
 	},
+	{
+		question: "En quelle année a débuté le Hacktoberfest ?",
+		options: ["2010", "2020", "2014", "2000"],
+		correctAnswer: 2,
+	},
+	{
+		question: "Quelle est la durée du Hacktoberfest ?",
+		options: ["Un mois", "Deux mois", "Six mois", "Troix mois"],
+		correctAnswer: 0,
+	},
 ];
 
 let currentQuestion = 0;
