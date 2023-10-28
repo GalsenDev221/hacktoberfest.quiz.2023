@@ -50,6 +50,11 @@ const questions = [
     options: ["Oui", "Non"],
     correctAnswer: 0,
   },
+  {
+    question: "Hacktoberfest ne peut-il pas avoir avoir lieu chaque 3 mois?",
+    options: ["Possible", "Non"],
+    correctAnswer: 0,
+  },
 ];
 
 let currentQuestion = 0;
