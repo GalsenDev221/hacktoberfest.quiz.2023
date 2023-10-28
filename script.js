@@ -24,8 +24,12 @@ const questions = [
     question: "Est-ce ce que GitLab participe au Hacktoberfest ?",
     options: ["Oui", "Non"],
     correctAnswer: 0,
-  }
-  ,
+  },
+  {
+    question: "Quel est l'objectif principal du Hacktoberfest ?",
+    options: ["Célébrer Halloween", "Promouvoir la consommation de citrouilles", "Encourager la contribution à des projets open source"],
+    correctAnswer: 2,
+  },
 ];
 
 let currentQuestion = 0;
