@@ -46,6 +46,7 @@ let currentQuestion = 0;
 let score = 0;
 let correctAnswers = 0
 let numberOfClick = 0
+const rejouerBtn = document.querySelector('#rejouer');
 
 const questionElement = document.getElementById("question");
 const optionsElement = document.getElementById("options");
@@ -111,3 +112,17 @@ function checkAnswer(selectedIndex, currentList) {
 }
 
 loadQuestion();
+
+
+rejouerBtn.addEventListener("click",()=>{
+  resetGame();
+});
+
+function resetGame() {
+  currentQuestion = 0;
+  score = 0;
+  correctAnswers = 0;
+  numberOfClick = 0;
+  scoreElement.innerText = score;
+  loadQuestion();
+}
