@@ -115,3 +115,16 @@ resetButton.addEventListener("click", () => {
   loadQuestion();
   scoreElement.textContent = score;
 });
+
+const sweetAlertButton = document.getElementById("sweet-alert-button");
+
+// Ajoutez un gestionnaire d'événement pour le clic sur le bouton
+sweetAlertButton.addEventListener("click", () => {
+  Swal.fire({
+    title: 'Ceci est un SweetAlert',
+    text: 'C\'est une boîte de dialogue SweetAlert personnalisée !',
+    icon: 'success',
+    confirmButtonText: 'OK'  // Correction de la syntaxe ici
+  });
+});
+
