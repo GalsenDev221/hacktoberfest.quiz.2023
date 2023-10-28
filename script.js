@@ -24,8 +24,17 @@ const questions = [
     question: "Est-ce ce que GitLab participe au Hacktoberfest ?",
     options: ["Oui", "Non"],
     correctAnswer: 0,
-  }
-  ,
+  },
+  {
+    question: "Quelle societe a cree le hacktoberfest ?",
+    options: ["DigitalOcean", "Microsoft", "galsenDev", "xarala"],
+    correctAnswer: 0,
+  },
+  {
+    question: "Combien de temps dure l'evenement Hacktoberfest ?",
+    options: ["1 ans", "1 mois", "1 week-end"],
+    correctAnswer: 1,
+  },
 ];
 
 let currentQuestion = 0;
