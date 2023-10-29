@@ -42,6 +42,8 @@ const questions = [
   },
   {
     question: "Où pouvez-vous contribuer pour participer au Hacktoberfest ?",
+    options: ["AWS", "Facebook", "GitHub", "DigitalOcean"],
+    correctAnswer: 2,
     label:'',
     options: ["AWS", "Facebook", "GitHub", "DigitaOcean"],
     correctAnswer: [2],
@@ -135,6 +137,11 @@ const questions = [
   {
     question: "Hacktoberfest est ii necessaire ?",
     options: ["Oui", "Non"],
+    correctAnswer: 0,
+  },
+  {
+    question: "Hacktoberfest ne peut-il pas avoir avoir lieu chaque 3 mois?",
+    options: ["Possible", "Non"],
     correctAnswer: 0,
   },
 ];
