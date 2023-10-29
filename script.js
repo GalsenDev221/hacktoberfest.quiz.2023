@@ -140,18 +140,6 @@ const questions = [
   },
 ];
 
-
-function sweetAlertEl() {
-  const btnEl=document.getElementById('btn-btn-envoyer')
-  btnEl.addEventListener('click',()=>{
-    Swal.fire(
-      'Merci!',
-      'vous avez repondu avec succée les questions!',
-    'success'
-    )
-  })
-}
-
 let currentQuestion = 0;
 let score = 0;
 let correctAnswers = 0
@@ -230,8 +218,8 @@ function handleActive(itemSelected){
     item.classList.remove("active");
   });
   if(itemSelected.classList.contains("active")){
-    itemSelected.classList.remove("active");
-
+    itemSelected.classList.remove("active");}
+  }
 function checkAnswer(selectedIndex, currentList) {
   const question = questions[currentQuestion];
 
@@ -272,10 +260,21 @@ function checkAnswer(selectedIndex, currentList) {
 	if (currentQuestion < questions.length) {
 		loadQuestion();
 	} else {
-		questionElement.textContent = "Quiz terminé ! Votre score :";
+    questionElement.innerHTML = `Quiz terminé !<br/> Vous avez un score total de <span class="score">${score}</span>`;
 		optionsElement.innerHTML = "";
 		scoreElement.textContent = score;
 	}
+}
+
+function sweetAlertEl() {
+  const btnEl=document.getElementById('btn-btn-envoyer')
+  btnEl.addEventListener('click',()=>{
+    Swal.fire(
+      'Merci!',
+      'vous avez repondu avec succée les questions!',
+    'success'
+    )
+  })
 }
 
 const resetButton = document.getElementById("reset-button");
@@ -287,16 +286,34 @@ resetButton.addEventListener("click", () => {
   scoreElement.textContent = score;
 });
 
-const sweetAlertButton = document.getElementById("sweet-alert-button");
+loadQuestion();
+///////////////////////////Modal///////////////////////////
+const openModalButton = document.getElementById("open-modal-button");
+const modal = document.getElementById("modal");
+const closeModalButton = document.getElementById("close-modal");
 
-// Ajoutez un gestionnaire d'événement pour le clic sur le bouton
-sweetAlertButton.addEventListener("click", () => {
-  Swal.fire({
-    title: 'Ceci est un SweetAlert',
-    text: 'C\'est une boîte de dialogue SweetAlert personnalisée !',
-    icon: 'success',
-    confirmButtonText: 'OK'  // Correction de la syntaxe ici
-  });
+openModalButton.addEventListener("click", () => {
+  modal.style.display = "flex"; //  Ouvrir le modal
 });
 
-loadQuestion();
+closeModalButton.addEventListener("click", () => {
+  modal.style.display = "none"; // Fermer le modal
+});
+
+/////////////////////////////////////////////////////////////
+const openSubmitModalButton = document.getElementById("open-submit-modal-button");
+const submitModal = document.getElementById("submit-modal");
+const closeSubmitModalButton = document.getElementById("close-submit-modal");
+const scorePlaceholder = document.getElementById("score-placeholder");
+
+
+openSubmitModalButton.addEventListener("click", () => {
+  submitModal.style.display = "block";
+  scorePlaceholder.textContent = score;
+});
+
+closeSubmitModalButton.addEventListener("click", () => {
+  submitModal.style.display = "none";
+});
+
+///////////////////////////////////////////////////////////
