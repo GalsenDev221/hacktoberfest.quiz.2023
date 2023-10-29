@@ -13,6 +13,14 @@ h1 {
   color: #007BFF;
 }
 
+#button{
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+.active{
+  background: #12cf15;
+}
 #quiz-container {
   max-width: 400px;
   margin: 0 auto;
@@ -47,7 +55,7 @@ li {
   transition: all ease 200ms;
 }
 li:hover {
-  background-color: #ddd;
+  background: #12cf15;
 }
 .active{
   background-color: #ddd;

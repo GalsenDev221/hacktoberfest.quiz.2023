@@ -36,19 +36,23 @@ const questions = [
 	},
   {
     question: "Quelle est la période du Hacktoberfest durant l'annee ?",
+    label:'',
     options: ["Octobre", "Décembre", "Mai", "Août"],
-    correctAnswer: 0,
+    correctAnswer: [0],
   },
   {
     question: "Où pouvez-vous contribuer pour participer au Hacktoberfest ?",
+    label:'',
     options: ["AWS", "Facebook", "GitHub", "DigitaOcean"],
-    correctAnswer: 2,
+    correctAnswer: [2],
   },
   {
     question:
       "Combien de contributions sont nécessaires pour valider le Hacktoberfest ?",
+      label:'',
+
     options: ["10", "2", "6", "4"],
-    correctAnswer: 3,
+    correctAnswer: [3],
   },
   {
     question:
@@ -58,8 +62,17 @@ const questions = [
   },
   {
     question: "Est-ce ce que GitLab participe au Hacktoberfest ?",
+    label:'',
+
     options: ["Oui", "Non"],
-    correctAnswer: 0,
+    correctAnswer: [0],
+  }, 
+  {
+    question: "Quels sont les developpeurs sénégalais qui participent au Hacktoberfest ?",
+    label:'Choix multiples',
+
+    options: ["Daouda", "Malick","Moustapha","khadim"],
+    correctAnswer: [0,3],
   },
   {
     question: "Quelle est la principale motivation derrière le Hacktoberfest ?",
@@ -146,15 +159,18 @@ let numberOfClick = 0
 let timeElapsed = 0;
 const rejouerBtn = document.querySelector('#rejouer');
 
-
 const questionElement = document.getElementById("question");
 const optionsElement = document.getElementById("options");
 const scoreElement = document.getElementById("score");
+const suivant=document.getElementById("suivant")
 
 function loadQuestion() {
   timeElapsed = 0;
   const question = questions[currentQuestion];
-  questionElement.textContent = question.question;
+  questionElement.innerHTML = `${question.question}`;
+  if(question.label){
+    questionElement.innerHTML+= `<p>${question.label}</p>`;
+  }
   optionsElement.innerHTML = "";
 
 	question.options.forEach((option, index) => {
@@ -207,7 +223,14 @@ function checkAnswer(selectedIndex, li) {
   });
   checkTimeElapsed();
 }
-
+function handleActive(itemSelected){
+  const question = questions[currentQuestion];
+  if(!question.label)
+    document.querySelectorAll(".list-item").forEach(item=>{
+    item.classList.remove("active");
+  });
+  if(itemSelected.classList.contains("active")){
+    itemSelected.classList.remove("active");
 
 function checkAnswer(selectedIndex, currentList) {
   const question = questions[currentQuestion];
