@@ -37,14 +37,44 @@ h1 {
   font-size: 1em;
   line-height: 1.4em;
   padding-top: 0em;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
+h1 {
+  font-size: 24px;
+  color: #007BFF;
+}
+
+#button{
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+.active{
+  background: #12cf15;
+}
 #quiz-container {
   max-width: 400px;
   margin: 0 auto;
   padding: 1em;
   background-color: var(--light);
   border-radius: 8px;
+}
+summary::after {
+  content: "\f138"; /* Code de l'icône Font Awesome */
+  font-family: "Font Awesome 5 Free"; /* Famille de police de caractères de Font Awesome */
+  margin-right: 10px; /* Espace entre l'icône et le texte du résumé */
+  font-weight: bold; /* Pour assurer une meilleure lisibilité */
+}
+
+details summary::-webkit-details-marker,
+details summary::-moz-details-marker,
+details summary::before {
+  display: none; /* Masquer l'icône par défaut */
 }
 
 #question {
@@ -127,4 +157,56 @@ li {
     flex-direction: column;
     justify-content: center;
   }
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin: 30px;
+  border-radius: 5px;
+  transition: all ease 200ms;
+}
+li:hover {
+  background: #12cf15;
+}
+.active{
+  background-color: #ddd;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+#reset-button {
+  background-color: #0056b3;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#sweet-alert-button{
+  background-color: #0056b3;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#sweet-alert-button:hover{
+  background-color: #007BFF;
+}
+
+#reset-button:hover {
+  background-color: #007BFF;
 }
