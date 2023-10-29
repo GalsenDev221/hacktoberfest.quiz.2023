@@ -1,6 +1,16 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 24px;
+  color: #007BFF;
 }
 
 #quiz-container {
@@ -9,6 +19,18 @@ body {
   padding: 20px;
   background-color: #f5f5f5;
   border-radius: 8px;
+}
+summary::after {
+  content: "\f138"; /* Code de l'icône Font Awesome */
+  font-family: "Font Awesome 5 Free"; /* Famille de police de caractères de Font Awesome */
+  margin-right: 10px; /* Espace entre l'icône et le texte du résumé */
+  font-weight: bold; /* Pour assurer une meilleure lisibilité */
+}
+
+details summary::-webkit-details-marker,
+details summary::-moz-details-marker,
+details summary::before {
+  display: none; /* Masquer l'icône par défaut */
 }
 
 ul {
@@ -20,7 +42,7 @@ li {
   cursor: pointer;
   padding: 10px;
   border: 1px solid #ccc;
-  margin: 5px;
+  margin: 30px;
   border-radius: 5px;
   transition: all ease 200ms;
 }
@@ -48,7 +70,7 @@ li:hover {
 
 /* affichage de la liste des scores  */
 .score-container{
-  max-width: 400px;
+  width: 400px;
   height: 50px;
   margin: 0 auto;
   margin-top: 20px;

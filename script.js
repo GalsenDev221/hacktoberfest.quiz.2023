@@ -1,20 +1,34 @@
 const questions = [
-  {
-    question: "Quelle est la période du Hacktoberfest durant l'annee ?",
-    options: ["Octobre", "Décembre", "Mai", "Août"],
-    correctAnswer: 0,
-  },
-  {
-    question: "Où pouvez-vous contribuer pour participer au Hacktoberfest ?",
-    options: ["AWS", "Facebook", "GitHub", "DigitaOcean"],
-    correctAnswer: 2,
-  },
-  {
-    question:
-      "Combien de contributions sont nécessaires pour valider le Hacktoberfest ?",
-    options: ["10", "2", "6", "4"],
-    correctAnswer: 3,
-  },
+	{
+		question: "Quelle est la période du Hacktoberfest durant l'annee ?",
+		options: ["Octobre", "Décembre", "Mai", "Août"],
+		correctAnswer: 0,
+	},
+	{
+		question: "Où pouvez-vous contribuer pour participer au Hacktoberfest ?",
+		options: ["AWS", "Facebook", "GitHub", "DigitaOcean"],
+		correctAnswer: 2,
+	},
+	{
+		question: "Combien de contributions sont nécessaires pour valider le Hacktoberfest ?",
+		options: ["10", "2", "6", "4"],
+		correctAnswer: 3,
+	},
+	{
+		question: "Quelles sont les deux langues officielles du Canada ? (choix multiple)",
+		options: ["Français", "Anglais", "Espagnol", "Allemand"],
+		correctAnswer: [0, 1],
+	},
+	{
+		question: "Est-ce ce que GitLab participe au Hacktoberfest ?",
+		options: ["Oui", "Non"],
+		correctAnswer: 0,
+	},
+	{
+		question: "Quelle est la durée du Hacktoberfest ?",
+		options: ["Un mois", "Deux mois", "Six mois", "Troix mois"],
+		correctAnswer: 0,
+	},
   {
     question:
       "Quelles sont les deux langues officielles du Canada ? (choix multiple)",
@@ -57,6 +71,18 @@ const questions = [
   },
 ];
 
+
+function sweetAlertEl() {
+  const btnEl=document.getElementById('btn-btn-envoyer')
+  btnEl.addEventListener('click',()=>{
+    Swal.fire(
+      'Merci!',
+      'vous avez repondu avec succée les questions!',
+    'success'
+    )
+  })
+}
+
 let currentQuestion = 0;
 let score = 0;
 let correctAnswers = 0;
@@ -67,10 +93,50 @@ const optionsElement = document.getElementById("options");
 const scoreElement = document.getElementById("score");
 
 function loadQuestion() {
-  const question = questions[currentQuestion];
-  questionElement.textContent = question.question;
-  optionsElement.innerHTML = "";
+	const question = questions[currentQuestion];
+	questionElement.textContent = question.question;
+	optionsElement.innerHTML = "";
 
+	question.options.forEach((option, index) => {
+		const li = document.createElement("li");
+		li.textContent = option;
+		li.addEventListener("click", () => checkAnswer(index, li));
+		optionsElement.appendChild(li);
+	});
+}
+
+function checkAnswer(selectedIndex, li) {
+	const question = questions[currentQuestion];
+
+	if (Array.isArray(question.correctAnswer)) {
+		numberOfClick++;
+		li.classList.add("active");
+		if (question.correctAnswer.includes(selectedIndex)) {
+			correctAnswers++;
+		}
+		if (numberOfClick === question.correctAnswer.length) {
+			if (correctAnswers === question.correctAnswer.length) {
+				score++;
+				scoreElement.textContent = score;
+			}
+			numberOfClick = 0;
+			correctAnswers = 0;
+			currentQuestion++;
+		}
+		if (currentQuestion < questions.length) {
+			loadQuestion();
+		} else {
+			questionElement.textContent = "Quiz terminé ! Votre score :";
+			optionsElement.innerHTML = "";
+			scoreElement.textContent = score;
+		}
+		return;
+	}
+
+	if (selectedIndex === question.correctAnswer) {
+		score++;
+		scoreElement.textContent = score;
+	}
   question.options.forEach((option, index) => {
     const li = document.createElement("li");
     li.textContent = option;
@@ -80,6 +146,7 @@ function loadQuestion() {
     optionsElement.appendChild(li);
   });
 }
+
 
 function checkAnswer(selectedIndex, currentList) {
   const question = questions[currentQuestion];
@@ -115,7 +182,7 @@ function checkAnswer(selectedIndex, currentList) {
     scoreElement.innerText = score;
   }
 
-  currentQuestion++;
+	currentQuestion++;
 
   if (currentQuestion < questions.length) {
     loadQuestion();
