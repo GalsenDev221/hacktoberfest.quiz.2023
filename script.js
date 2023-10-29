@@ -52,7 +52,7 @@ const questions = [
   },
   {
     question: "En qu'elle année le Hacktoberfest a commencé ?",
-    options: ["2013", "2015","2018", "2010"],
+    options: ["2013", "2015", "2018", "2010"],
     correctAnswer: 0,
   },
 ];
@@ -123,7 +123,46 @@ function checkAnswer(selectedIndex, currentList) {
     questionElement.textContent = "Quiz terminé ! Votre score :";
     optionsElement.innerHTML = "";
     scoreElement.textContent = score;
+    // affichage de la liste des scores
+    document.getElementById("listScore").style.display = "block";
+    scoreSave(score);
   }
 }
 
 loadQuestion();
+
+// gestion de scores
+function scoreSave(score) {
+  let scoreObject = {
+    score: score,
+    date: new Date(),
+  };
+  if (
+    localStorage.getItem("scores") == null ||
+    localStorage.getItem("scores") == undefined
+  ) {
+    localStorage.setItem("scores", JSON.stringify([scoreObject]));
+  } else {
+    let tabTmp = JSON.parse(localStorage.getItem("scores"));
+    tabTmp.push(scoreObject);
+    localStorage.setItem("scores", JSON.stringify(tabTmp));
+  }
+}
+
+// affchage du des scores
+let scoreDisplay = document.getElementById("scoreDisplay");
+function displaySavedScores() {
+  document.querySelector(".score-container").style.opacity = "1";
+  document.querySelector(".score-container").style.height = "300px";
+  scoreDisplay.innerHTML = "";
+  let tabTmp = JSON.parse(localStorage.getItem("scores"));
+  tabTmp.forEach((element) => {
+    let localDate=new Date(element.date);
+    scoreDisplay.innerHTML += `
+        <div class="score-item">
+          <span>Score : ${element.score}</span> <br>
+          <span>Le ${localDate.getDate()}-${localDate.getMonth()}-${localDate.getFullYear()} à ${localDate.getHours()}h:${localDate.getMinutes()}min</span>
+        </div>
+    `;
+  });
+}
