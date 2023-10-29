@@ -63,7 +63,6 @@ const questions = [
   {
     question: "Est-ce ce que GitLab participe au Hacktoberfest ?",
     label:'',
-
     options: ["Oui", "Non"],
     correctAnswer: [0],
   }, 
@@ -154,6 +153,8 @@ function sweetAlertEl() {
 
 let currentQuestion = 0;
 let score = 0;
+let correctAnswerCounter = 0
+let numberOfClick = 0
 let correctAnswers = 0
 let numberOfClick = 0
 let timeElapsed = 0;
@@ -240,6 +241,15 @@ function checkAnswer(selectedIndex, currentList) {
     currentList.classList.add("active");
 
     if (question.correctAnswer.includes(selectedIndex)) {
+      correctAnswerCounter++
+    }
+    if (numberOfClick === question.correctAnswer.length) {
+      if (correctAnswerCounter === question.correctAnswer.length) {
+        score++
+        scoreElement.innerText = score
+      }
+      numberOfClick = 0
+      correctAnswerCounter = 0
       correctAnswers++;
     }
     if (numberOfClick === question.correctAnswer.length) {
