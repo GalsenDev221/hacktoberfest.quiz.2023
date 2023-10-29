@@ -197,7 +197,10 @@ function checkAnswer(selectedIndex, li) {
 		li.classList.add("active");
 		if (question.correctAnswer.includes(selectedIndex)) {
 			correctAnswers++;
-		}
+      li.style.backgroundColor = "#57F287";
+		} else{
+      li.style.backgroundColor = '#FD6D72';
+    }
 		if (numberOfClick === question.correctAnswer.length) {
 			if (correctAnswers === question.correctAnswer.length) {
 				score++;
@@ -206,13 +209,11 @@ function checkAnswer(selectedIndex, li) {
 			numberOfClick = 0;
 			correctAnswers = 0;
 			currentQuestion++;
-		}
-		if (currentQuestion < questions.length) {
-			loadQuestion();
-		} else {
-			questionElement.textContent = "Quiz terminé ! Votre score :";
-			optionsElement.innerHTML = "";
-			scoreElement.textContent = score;
+			if (currentQuestion < questions.length) {
+				setTimeout(loadQuestion, 1000);
+			} else {
+				quizFinished();
+			}
 		}
 		return;
 	}
@@ -220,6 +221,9 @@ function checkAnswer(selectedIndex, li) {
 	if (selectedIndex === question.correctAnswer) {
 		score++;
 		scoreElement.textContent = score;
+    li.style.backgroundColor = "#57F287";
+	} else{
+    li.style.backgroundColor = '#FD6D72';
 	}
   question.options.forEach((option, index) => {
     const li = document.createElement("li");
@@ -278,7 +282,6 @@ function checkAnswer(selectedIndex, currentList) {
     return;
   }
 
-
   if (selectedIndex === question.correctAnswer) {
     score++;
     scoreElement.innerText = score;
@@ -287,14 +290,17 @@ function checkAnswer(selectedIndex, currentList) {
 	currentQuestion++;
 
 	if (currentQuestion < questions.length) {
-		loadQuestion();
+		setTimeout(loadQuestion, 1000);
 	} else {
-		questionElement.textContent = "Quiz terminé ! Votre score :";
-		optionsElement.innerHTML = "";
-		scoreElement.textContent = score;
+		quizFinished();
 	}
 }
 
+function quizFinished() {
+	questionElement.textContent = "Quiz terminé ! Votre score :";
+	optionsElement.innerHTML = "";
+	scoreElement.textContent = score;
+}
 const resetButton = document.getElementById("reset-button");
 
 resetButton.addEventListener("click", () => {
