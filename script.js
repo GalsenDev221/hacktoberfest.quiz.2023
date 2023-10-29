@@ -160,8 +160,7 @@ function sweetAlertEl() {
 
 let currentQuestion = 0;
 let score = 0;
-let correctAnswerCounter = 0
-let numberOfClick = 0
+let correctAnswerCounter = 0;
 let correctAnswers = 0
 let numberOfClick = 0
 let timeElapsed = 0;
@@ -236,13 +235,15 @@ function checkAnswer(selectedIndex, li) {
   checkTimeElapsed();
 }
 function handleActive(itemSelected){
-  const question = questions[currentQuestion];
-  if(!question.label)
-    document.querySelectorAll(".list-item").forEach(item=>{
-    item.classList.remove("active");
-  });
-  if(itemSelected.classList.contains("active")){
-    itemSelected.classList.remove("active");
+	const question = questions[currentQuestion];
+	if (!question.label)
+		document.querySelectorAll(".list-item").forEach((item) => {
+			item.classList.remove("active");
+		});
+	if (itemSelected.classList.contains("active")) {
+		itemSelected.classList.remove("active");
+	}
+}
 
 function checkAnswer(selectedIndex, currentList) {
   const question = questions[currentQuestion];
