@@ -6,7 +6,7 @@ const questions = [
 	},
 	{
 		question: "Où pouvez-vous contribuer pour participer au Hacktoberfest ?",
-		options: ["AWS", "Facebook", "GitHub", "DigitaOcean"],
+		options: ["AWS", "Facebook", "GitHub", "DigitalOcean"],
 		correctAnswer: 2,
 	},
 	{
@@ -45,7 +45,7 @@ const questions = [
     options: ["AWS", "Facebook", "GitHub", "DigitalOcean"],
     correctAnswer: 2,
     label:'',
-    options: ["AWS", "Facebook", "GitHub", "DigitaOcean"],
+    options: ["AWS", "Facebook", "GitHub", "DigitalOcean"],
     correctAnswer: [2],
   },
   {
@@ -72,7 +72,7 @@ const questions = [
     question: "Quels sont les developpeurs sénégalais qui participent au Hacktoberfest ?",
     label:'Choix multiples',
 
-    options: ["Daouda", "Malick","Moustapha","khadim"],
+    options: ["Daouda", "Malick","Moustapha","Khadim"],
     correctAnswer: [0,3],
   },
   {
@@ -140,9 +140,19 @@ const questions = [
     correctAnswer: 0,
   },
   {
-    question: "Hacktoberfest ne peut-il pas avoir avoir lieu chaque 3 mois?",
+    question: "Hacktoberfest ne peut-il pas avoir  lieu chaque 3 mois?",
     options: ["Possible", "Non"],
     correctAnswer: 0,
+  },
+  {
+    question : "Comment sauvegarder périodiquement vos bases de données sur Git ?",
+    options : ["Créer une archive de notre application", "Créer un fichier de configuration SQL"],
+    correctAnswer: 1,
+  },
+  {
+    question : "Comment mettre une application héritée dans Git ?",
+    options :["Créer un fichier de configuration SQL", "Télécharger le code source dans un référentiel GitLab"],
+    correctAnswer: 1,
   },
 ];
 
@@ -152,7 +162,7 @@ function sweetAlertEl() {
   btnEl.addEventListener('click',()=>{
     Swal.fire(
       'Merci!',
-      'vous avez repondu avec succée les questions!',
+      'vous avez repondu avec succès les questions!',
     'success'
     )
   })
@@ -162,7 +172,6 @@ let currentQuestion = 0;
 let score = 0;
 let correctAnswerCounter = 0;
 let correctAnswers = 0
-let numberOfClick = 0
 let timeElapsed = 0;
 const rejouerBtn = document.querySelector('#rejouer');
 
