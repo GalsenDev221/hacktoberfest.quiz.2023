@@ -1,4 +1,5 @@
 const questions = [
+
 	{
 		question: "Quelle est la période du Hacktoberfest durant l'annee ?",
 		options: ["Octobre", "Décembre", "Mai", "Août"],
@@ -150,10 +151,17 @@ const questions = [
     correctAnswer: 1,
   },
   {
+    question:" Quel est l'importance de Git dans le développement logiciel ?",
+    options:["Git permet de gérer les versions du code source, de faciliter la collaboration entre les développeurs et de maintenir un historique des modifications.","Git est principalement utilisé pour la création de fichiers de configuration SQL.","Git est utilisé pour télécharger le code source dans un référentiel GitLab."],
+    correctAnswer:0,
+  },
+  {
     question : "Comment mettre une application héritée dans Git ?",
     options :["Créer un fichier de configuration SQL", "Télécharger le code source dans un référentiel GitLab"],
     correctAnswer: 1,
   },
+  
+
 ];
 
 
