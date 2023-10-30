@@ -51,9 +51,18 @@ const questions = [
     correctAnswer: 0,
   },
   {
-    question: "Hacktoberfest ne peut-il pas avoir avoir lieu chaque 3 mois?",
+    question: "Hacktoberfest ne peut-il pas avoir  lieu chaque 3 mois?",
     options: ["Possible", "Non"],
     correctAnswer: 0,
+  },
+  {
+    question: "How to Periodically Backup Your Databases to Git?",
+    options: ["Create an archive of our application","Create an SQL configuration file"],
+    correctAnswer: 0,
+  },
+  {
+    question: "How to Put a Legacy Application in Git ?",
+    options:["Create an SQL configuration file","Upload the source code to a GitLab repository"]
   },
 ];
 
