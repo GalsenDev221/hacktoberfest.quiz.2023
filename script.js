@@ -25,11 +25,6 @@ const questions = [
 		correctAnswer: 0,
 	},
 	{
-		question: "En quelle année a débuté le Hacktoberfest ?",
-		options: ["2010", "2020", "2014", "2000"],
-		correctAnswer: 2,
-	},
-	{
 		question: "Quelle est la durée du Hacktoberfest ?",
 		options: ["Un mois", "Deux mois", "Six mois", "Troix mois"],
 		correctAnswer: 0,
@@ -76,11 +71,6 @@ const questions = [
     correctAnswer: [0,3],
   },
   {
-    question: "Quelle est la principale motivation derrière le Hacktoberfest ?",
-    options: ["Célébrer la fête d'Halloween", "Promouvoir la consommation de citrouilles", "Encourager la contribution à des projets open source", "Organiser des compétitions de piratage informatique"],
-    correctAnswer: 2
-  },
-  {
     question: "Quel est l'objectif principal du Hacktoberfest ?",
     options: [
       "Célébrer Halloween",
@@ -95,11 +85,6 @@ const questions = [
     correctAnswer: 0,
   },
   {
-    question: "Quel type de projets peut être éligible pour le Hacktoberfest ?",
-    options: ["Seuls les projets en Python.", "Les projets en Python et JavaScript.", "Tout projet open source qui accepte des contributions."],
-    correctAnswer: 2,
-  },
-  {
     question: "Combien de temps dure l'evenement Hacktoberfest ?",
     options: ["1 ans", "1 mois", "1 week-end"],
     correctAnswer: 1,
@@ -111,32 +96,7 @@ const questions = [
   },
   {
     question: "En qu'elle année le Hacktoberfest a commencé ?",
-    options: ["2013", "2015","2018", "2010"],
-    correctAnswer: 1,
-  },
-  {
-    question: "Qu'est-ce qu'une Pull Request (demande de fusion) ?",
-    options: ["Un ensemble de modifications suggérées pour un projet open source.", "Une demande de fusion de branches dans Git.", "Une demande pour fusionner deux projets open source."],
-    correctAnswer: 0,
-  },
-  {
-    question: "Comment puis-je célébrer la réussite du Hacktoberfest ?",
-    options: ["En publiant un tweet sur votre expérience.", "En organisant une grande fête.", "En partageant vos réalisations sur les médias sociaux, en rejoignant des événements communautaires, ou en obtenant un t-shirt Hacktoberfest."],
-    correctAnswer: 2,
-  },
-   {
-    question: "Combien de temps dure l'evenement Hacktoberfest ?",
-    options: ["1 ans", "1 mois", "1 week-end"],
-    correctAnswer: 1,
-  },
-  {
-    question: "comment créer une branche git ?",
-    options: ["git merge", "git checkout -b ma-nouvelle-branche", "git rebase"],
-    correctAnswer: 1,
-  },
-  {
-    question: "Hacktoberfest est ii necessaire ?",
-    options: ["Oui", "Non"],
+    options: ["2013", "2015", "2018", "2010"],
     correctAnswer: 0,
   },
   {
@@ -155,7 +115,6 @@ const questions = [
     correctAnswer: 1,
   },
 ];
-
 
 function sweetAlertEl() {
   const btnEl=document.getElementById('btn-btn-envoyer')
@@ -244,6 +203,14 @@ function checkAnswer(selectedIndex, li) {
   checkTimeElapsed();
 }
 function handleActive(itemSelected){
+  const question = questions[currentQuestion];
+  if(!question.label)
+    document.querySelectorAll(".list-item").forEach(item=>{
+    item.classList.remove("active");
+  });
+  if(itemSelected.classList.contains("active")){
+    itemSelected.classList.remove("active");}
+  }
 	const question = questions[currentQuestion];
 	if (!question.label)
 		document.querySelectorAll(".list-item").forEach((item) => {
@@ -299,6 +266,19 @@ function checkAnswer(selectedIndex, currentList) {
 
 	currentQuestion++;
 
+  if (currentQuestion < questions.length) {
+    loadQuestion();
+  } else {
+    questionElement.textContent = "Quiz terminé ! Votre score :";
+    optionsElement.innerHTML = "";
+    scoreElement.textContent = score;
+    // affichage de la liste des scores
+    document.getElementById("listScore").style.display = "block";
+    scoreSave(score);
+  }
+}
+
+loadQuestion();
 	if (currentQuestion < questions.length) {
 		setTimeout(loadQuestion, 1000);
 	} else {
@@ -313,23 +293,38 @@ function quizFinished() {
 }
 const resetButton = document.getElementById("reset-button");
 
-resetButton.addEventListener("click", () => {
-  currentQuestion = 0;
-  score = 0;
-  loadQuestion();
-  scoreElement.textContent = score;
-});
+// gestion de scores
+function scoreSave(score) {
+  let scoreObject = {
+    score: score,
+    date: new Date(),
+  };
+  if (
+    localStorage.getItem("scores") == null ||
+    localStorage.getItem("scores") == undefined
+  ) {
+    localStorage.setItem("scores", JSON.stringify([scoreObject]));
+  } else {
+    let tabTmp = JSON.parse(localStorage.getItem("scores"));
+    tabTmp.push(scoreObject);
+    localStorage.setItem("scores", JSON.stringify(tabTmp));
+  }
+}
 
-const sweetAlertButton = document.getElementById("sweet-alert-button");
-
-// Ajoutez un gestionnaire d'événement pour le clic sur le bouton
-sweetAlertButton.addEventListener("click", () => {
-  Swal.fire({
-    title: 'Ceci est un SweetAlert',
-    text: 'C\'est une boîte de dialogue SweetAlert personnalisée !',
-    icon: 'success',
-    confirmButtonText: 'OK'  // Correction de la syntaxe ici
+// affchage du des scores
+let scoreDisplay = document.getElementById("scoreDisplay");
+function displaySavedScores() {
+  document.querySelector(".score-container").style.opacity = "1";
+  document.querySelector(".score-container").style.height = "300px";
+  scoreDisplay.innerHTML = "";
+  let tabTmp = JSON.parse(localStorage.getItem("scores"));
+  tabTmp.forEach((element) => {
+    let localDate=new Date(element.date);
+    scoreDisplay.innerHTML += `
+        <div class="score-item">
+          <span>Score : ${element.score}</span> <br>
+          <span>Le ${localDate.getDate()}-${localDate.getMonth()}-${localDate.getFullYear()} à ${localDate.getHours()}h:${localDate.getMinutes()}min</span>
+        </div>
+    `;
   });
-});
-
-loadQuestion();
+}
