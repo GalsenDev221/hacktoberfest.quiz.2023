@@ -25,11 +25,6 @@ const questions = [
 		correctAnswer: 0,
 	},
 	{
-		question: "En quelle année a débuté le Hacktoberfest ?",
-		options: ["2010", "2020", "2014", "2000"],
-		correctAnswer: 2,
-	},
-	{
 		question: "Quelle est la durée du Hacktoberfest ?",
 		options: ["Un mois", "Deux mois", "Six mois", "Troix mois"],
 		correctAnswer: 0,
@@ -75,11 +70,6 @@ const questions = [
     correctAnswer: [0,3],
   },
   {
-    question: "Quelle est la principale motivation derrière le Hacktoberfest ?",
-    options: ["Célébrer la fête d'Halloween", "Promouvoir la consommation de citrouilles", "Encourager la contribution à des projets open source", "Organiser des compétitions de piratage informatique"],
-    correctAnswer: 2
-  },
-  {
     question: "Quel est l'objectif principal du Hacktoberfest ?",
     options: [
       "Célébrer Halloween",
@@ -94,11 +84,6 @@ const questions = [
     correctAnswer: 0,
   },
   {
-    question: "Quel type de projets peut être éligible pour le Hacktoberfest ?",
-    options: ["Seuls les projets en Python.", "Les projets en Python et JavaScript.", "Tout projet open source qui accepte des contributions."],
-    correctAnswer: 2,
-  },
-  {
     question: "Combien de temps dure l'evenement Hacktoberfest ?",
     options: ["1 ans", "1 mois", "1 week-end"],
     correctAnswer: 1,
@@ -110,32 +95,7 @@ const questions = [
   },
   {
     question: "En qu'elle année le Hacktoberfest a commencé ?",
-    options: ["2013", "2015","2018", "2010"],
-    correctAnswer: 1,
-  },
-  {
-    question: "Qu'est-ce qu'une Pull Request (demande de fusion) ?",
-    options: ["Un ensemble de modifications suggérées pour un projet open source.", "Une demande de fusion de branches dans Git.", "Une demande pour fusionner deux projets open source."],
-    correctAnswer: 0,
-  },
-  {
-    question: "Comment puis-je célébrer la réussite du Hacktoberfest ?",
-    options: ["En publiant un tweet sur votre expérience.", "En organisant une grande fête.", "En partageant vos réalisations sur les médias sociaux, en rejoignant des événements communautaires, ou en obtenant un t-shirt Hacktoberfest."],
-    correctAnswer: 2,
-  },
-   {
-    question: "Combien de temps dure l'evenement Hacktoberfest ?",
-    options: ["1 ans", "1 mois", "1 week-end"],
-    correctAnswer: 1,
-  },
-  {
-    question: "comment créer une branche git ?",
-    options: ["git merge", "git checkout -b ma-nouvelle-branche", "git rebase"],
-    correctAnswer: 1,
-  },
-  {
-    question: "Hacktoberfest est ii necessaire ?",
-    options: ["Oui", "Non"],
+    options: ["2013", "2015", "2018", "2010"],
     correctAnswer: 0,
   },
 ];
@@ -257,63 +217,52 @@ function checkAnswer(selectedIndex, currentList) {
 
 	currentQuestion++;
 
-	if (currentQuestion < questions.length) {
-		loadQuestion();
-	} else {
-    questionElement.innerHTML = `Quiz terminé !<br/> Vous avez un score total de <span class="score">${score}</span>`;
-		optionsElement.innerHTML = "";
-		scoreElement.textContent = score;
-	}
+  if (currentQuestion < questions.length) {
+    loadQuestion();
+  } else {
+    questionElement.textContent = "Quiz terminé ! Votre score :";
+    optionsElement.innerHTML = "";
+    scoreElement.textContent = score;
+    // affichage de la liste des scores
+    document.getElementById("listScore").style.display = "block";
+    scoreSave(score);
+  }
 }
-
-function sweetAlertEl() {
-  const btnEl=document.getElementById('btn-btn-envoyer')
-  btnEl.addEventListener('click',()=>{
-    Swal.fire(
-      'Merci!',
-      'vous avez repondu avec succée les questions!',
-    'success'
-    )
-  })
-}
-
-const resetButton = document.getElementById("reset-button");
-
-resetButton.addEventListener("click", () => {
-  currentQuestion = 0;
-  score = 0;
-  loadQuestion();
-  scoreElement.textContent = score;
-});
 
 loadQuestion();
-///////////////////////////Modal///////////////////////////
-const openModalButton = document.getElementById("open-modal-button");
-const modal = document.getElementById("modal");
-const closeModalButton = document.getElementById("close-modal");
 
-openModalButton.addEventListener("click", () => {
-  modal.style.display = "flex"; //  Ouvrir le modal
-});
+// gestion de scores
+function scoreSave(score) {
+  let scoreObject = {
+    score: score,
+    date: new Date(),
+  };
+  if (
+    localStorage.getItem("scores") == null ||
+    localStorage.getItem("scores") == undefined
+  ) {
+    localStorage.setItem("scores", JSON.stringify([scoreObject]));
+  } else {
+    let tabTmp = JSON.parse(localStorage.getItem("scores"));
+    tabTmp.push(scoreObject);
+    localStorage.setItem("scores", JSON.stringify(tabTmp));
+  }
+}
 
-closeModalButton.addEventListener("click", () => {
-  modal.style.display = "none"; // Fermer le modal
-});
-
-/////////////////////////////////////////////////////////////
-const openSubmitModalButton = document.getElementById("open-submit-modal-button");
-const submitModal = document.getElementById("submit-modal");
-const closeSubmitModalButton = document.getElementById("close-submit-modal");
-const scorePlaceholder = document.getElementById("score-placeholder");
-
-
-openSubmitModalButton.addEventListener("click", () => {
-  submitModal.style.display = "block";
-  scorePlaceholder.textContent = score;
-});
-
-closeSubmitModalButton.addEventListener("click", () => {
-  submitModal.style.display = "none";
-});
-
-///////////////////////////////////////////////////////////
+// affchage du des scores
+let scoreDisplay = document.getElementById("scoreDisplay");
+function displaySavedScores() {
+  document.querySelector(".score-container").style.opacity = "1";
+  document.querySelector(".score-container").style.height = "300px";
+  scoreDisplay.innerHTML = "";
+  let tabTmp = JSON.parse(localStorage.getItem("scores"));
+  tabTmp.forEach((element) => {
+    let localDate=new Date(element.date);
+    scoreDisplay.innerHTML += `
+        <div class="score-item">
+          <span>Score : ${element.score}</span> <br>
+          <span>Le ${localDate.getDate()}-${localDate.getMonth()}-${localDate.getFullYear()} à ${localDate.getHours()}h:${localDate.getMinutes()}min</span>
+        </div>
+    `;
+  });
+}

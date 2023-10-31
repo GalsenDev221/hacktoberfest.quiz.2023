@@ -60,7 +60,6 @@ h1 {
   background-color: var(--dark-blue-100-hf);
 }
 
-/*////////Section des Reponses///////*/
 ul {
   list-style: none;
   padding: 0;
@@ -84,9 +83,7 @@ li {
   background-color: var(--blue-hf);
   border: none;
 }
-/*//////////////////////*/
 
-/*/////////Section Score////////*/
 #score-container {
   font-size: small;
   color: var(--red-hf);
@@ -96,9 +93,7 @@ li {
     color: var(--dark-blue-100-hf);
   }
 }
-/*//////////////////////*/
 
-/*////////Boutton/////////*/
 button {
   border-radius: 5px;
   border: 1px solid var(--dark-blue-100-hf);
@@ -395,4 +390,3 @@ button {
     border-color: var(--blue-hf);
   }
 }
-/*//////////////////////*/
