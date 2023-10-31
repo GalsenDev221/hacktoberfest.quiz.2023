@@ -6,7 +6,7 @@ const questions = [
 	},
 	{
 		question: "Où pouvez-vous contribuer pour participer au Hacktoberfest ?",
-		options: ["AWS", "Facebook", "GitHub", "DigitaOcean"],
+		options: ["AWS", "Facebook", "GitHub", "DigitalOcean"],
 		correctAnswer: 2,
 	},
 	{
@@ -37,8 +37,10 @@ const questions = [
   },
   {
     question: "Où pouvez-vous contribuer pour participer au Hacktoberfest ?",
+    options: ["AWS", "Facebook", "GitHub", "DigitalOcean"],
+    correctAnswer: 2,
     label:'',
-    options: ["AWS", "Facebook", "GitHub", "DigitaOcean"],
+    options: ["AWS", "Facebook", "GitHub", "DigitalOcean"],
     correctAnswer: [2],
   },
   {
@@ -58,7 +60,6 @@ const questions = [
   {
     question: "Est-ce ce que GitLab participe au Hacktoberfest ?",
     label:'',
-
     options: ["Oui", "Non"],
     correctAnswer: [0],
   }, 
@@ -66,7 +67,7 @@ const questions = [
     question: "Quels sont les developpeurs sénégalais qui participent au Hacktoberfest ?",
     label:'Choix multiples',
 
-    options: ["Daouda", "Malick","Moustapha","khadim"],
+    options: ["Daouda", "Malick","Moustapha","Khadim"],
     correctAnswer: [0,3],
   },
   {
@@ -98,12 +99,38 @@ const questions = [
     options: ["2013", "2015", "2018", "2010"],
     correctAnswer: 0,
   },
+  {
+    question: "Hacktoberfest ne peut-il pas avoir  lieu chaque 3 mois?",
+    options: ["Possible", "Non"],
+    correctAnswer: 0,
+  },
+  {
+    question : "Comment sauvegarder périodiquement vos bases de données sur Git ?",
+    options : ["Créer une archive de notre application", "Créer un fichier de configuration SQL"],
+    correctAnswer: 1,
+  },
+  {
+    question : "Comment mettre une application héritée dans Git ?",
+    options :["Créer un fichier de configuration SQL", "Télécharger le code source dans un référentiel GitLab"],
+    correctAnswer: 1,
+  },
 ];
+
+function sweetAlertEl() {
+  const btnEl=document.getElementById('btn-btn-envoyer')
+  btnEl.addEventListener('click',()=>{
+    Swal.fire(
+      'Merci!',
+      'vous avez repondu avec succès les questions!',
+    'success'
+    )
+  })
+}
 
 let currentQuestion = 0;
 let score = 0;
+let correctAnswerCounter = 0;
 let correctAnswers = 0
-let numberOfClick = 0
 let timeElapsed = 0;
 const rejouerBtn = document.querySelector('#rejouer');
 
@@ -137,7 +164,10 @@ function checkAnswer(selectedIndex, li) {
 		li.classList.add("active");
 		if (question.correctAnswer.includes(selectedIndex)) {
 			correctAnswers++;
-		}
+      li.style.backgroundColor = "#57F287";
+		} else{
+      li.style.backgroundColor = '#FD6D72';
+    }
 		if (numberOfClick === question.correctAnswer.length) {
 			if (correctAnswers === question.correctAnswer.length) {
 				score++;
@@ -146,13 +176,11 @@ function checkAnswer(selectedIndex, li) {
 			numberOfClick = 0;
 			correctAnswers = 0;
 			currentQuestion++;
-		}
-		if (currentQuestion < questions.length) {
-			loadQuestion();
-		} else {
-			questionElement.textContent = "Quiz terminé ! Votre score :";
-			optionsElement.innerHTML = "";
-			scoreElement.textContent = score;
+			if (currentQuestion < questions.length) {
+				setTimeout(loadQuestion, 1000);
+			} else {
+				quizFinished();
+			}
 		}
 		return;
 	}
@@ -160,6 +188,9 @@ function checkAnswer(selectedIndex, li) {
 	if (selectedIndex === question.correctAnswer) {
 		score++;
 		scoreElement.textContent = score;
+    li.style.backgroundColor = "#57F287";
+	} else{
+    li.style.backgroundColor = '#FD6D72';
 	}
   question.options.forEach((option, index) => {
     const li = document.createElement("li");
@@ -180,6 +211,16 @@ function handleActive(itemSelected){
   if(itemSelected.classList.contains("active")){
     itemSelected.classList.remove("active");}
   }
+	const question = questions[currentQuestion];
+	if (!question.label)
+		document.querySelectorAll(".list-item").forEach((item) => {
+			item.classList.remove("active");
+		});
+	if (itemSelected.classList.contains("active")) {
+		itemSelected.classList.remove("active");
+	}
+}
+
 function checkAnswer(selectedIndex, currentList) {
   const question = questions[currentQuestion];
 
@@ -188,6 +229,15 @@ function checkAnswer(selectedIndex, currentList) {
     currentList.classList.add("active");
 
     if (question.correctAnswer.includes(selectedIndex)) {
+      correctAnswerCounter++
+    }
+    if (numberOfClick === question.correctAnswer.length) {
+      if (correctAnswerCounter === question.correctAnswer.length) {
+        score++
+        scoreElement.innerText = score
+      }
+      numberOfClick = 0
+      correctAnswerCounter = 0
       correctAnswers++;
     }
     if (numberOfClick === question.correctAnswer.length) {
@@ -209,7 +259,6 @@ function checkAnswer(selectedIndex, currentList) {
     return;
   }
 
-
   if (selectedIndex === question.correctAnswer) {
     score++;
     scoreElement.innerText = score;
@@ -230,6 +279,19 @@ function checkAnswer(selectedIndex, currentList) {
 }
 
 loadQuestion();
+	if (currentQuestion < questions.length) {
+		setTimeout(loadQuestion, 1000);
+	} else {
+		quizFinished();
+	}
+}
+
+function quizFinished() {
+	questionElement.textContent = "Quiz terminé ! Votre score :";
+	optionsElement.innerHTML = "";
+	scoreElement.textContent = score;
+}
+const resetButton = document.getElementById("reset-button");
 
 // gestion de scores
 function scoreSave(score) {
