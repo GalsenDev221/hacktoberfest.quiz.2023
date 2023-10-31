@@ -3,12 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Inclure SweetAlert -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Hacktoberfest Quiz 2023</title>
   </head>
 
@@ -17,13 +25,64 @@
       <h1>Quiz sur le Hacktoberfest</h1>
       <p id="question"></p>
       <ul id="options"></ul>
-      <p>Score : <span id="score">0</span></p>
-      <p id="listScore" onclick="displaySavedScores()">Liste de mes scores</p>
-    </div>
-    <div class="score-container">
-      <h1>Mes scores</h1>
-      <div id="scoreDisplay">
-        
+      <p id="score-container">
+        Score : <span id="score" class="score">0</span>
+      </p>
+      <div class="button-group-container">
+        <button id="rejouer" class="button">Rejouer</button>
+        <button id="reset-button">Réinitialiser</button>
+        <button id="suivant">Suivant</button>
+        <div class="button-group">
+          <button id="open-submit-modal-button">Envoyer</button>
+          <button id="open-modal-button">
+            En savoir plus sur Hacktoberfest <img src="./assets/info.svg" alt="">
+          </button>
+        </div>
+      </div>
+
+      <div id="submit-modal" class="submit-modal">
+        <div class="submit-modal-content">
+          <h2 class="submit-modal-header">Merci!</h2>
+          <p class="text-presentation">
+            vous avez repondu avec succès à <span id="score-placeholder"></span> questions!
+          </p>
+
+          <span id="close-submit-modal" class="close-submit-modal">&times;</span>
+        </div>
+
+      </div>
+
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <img
+              src="/assets/logo-hacktoberfest--horizontal.ebc5fdc8.svg"
+              alt="logo-hacktoberfest"
+              class="logo-hacktoberfest"
+              loading="lazy"
+            />
+            <span id="close-modal" class="close-modal">&times;</span>
+          </div>
+          <p class="text-presentation">
+            Le Hacktoberfest est l'événement annuel de DigitalOcean qui
+            encourage les gens à contribuer à l'open source tout au long du mois
+            d'octobre. Une grande partie de l'infrastructure technologique
+            moderne, y compris certains produits propres à DigitalOcean, repose
+            sur des projets open source construits et maintenus par des
+            personnes passionnées qui n'ont souvent pas le personnel ou les
+            budgets nécessaires pour faire autre chose que maintenir le projet
+            en vie. <br />
+            <br />Le Hacktoberfest a pour objectif de redonner à ces projets,
+            d'affiner les compétences et de célébrer tout ce qui concerne l'open
+            source, en particulier les personnes qui rendent l'open source si
+            spécial. Au cours des 10 dernières années, des milliers de
+            personnes, codeurs et non-codeurs, ont participé au Hacktoberfest
+            pour soutenir les projets qu'ils utilisent et aiment, acquérir et
+            mettre en pratique des compétences qui amélioreront leur carrière et
+            rencontrer de nouvelles personnes qui aiment autant l'open source.
+            comme ils le font.
+          </p>
+        </div>
       </div>
     </div>
     <script src="script.js"></script>

@@ -1,36 +1,63 @@
+:root {
+  --light: #efedef;
+  --light-bg: #fffcf7;
+  --yellow-hf: #fffba4;
+  --blue-hf: #33b6d8;
+  --dark-blue-50-hf: #14596b;
+  --dark-blue-100-hf: #0c3640;
+  --brown-hf: #ad832d;
+  --red-hf: #ec4237;
+  --dim-dark: #202023;
+
+  font-family: "Montserrat", Arial, sans-serif;
+  font-weight: 600;
+  box-sizing: border-box;
+  overflow-y: hidden;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  color-scheme: light dark;
+  background-color: var(--light);
+}
+
 body {
-  font-family: Arial, sans-serif;
   text-align: center;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
   height: 100vh;
+  display: flex;
+  place-items: center;
+}
+
+h1 {
+  font-family: "Press Start 2P";
+  font-size: 1em;
+  line-height: 1.4em;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-h1 {
-  font-size: 24px;
-  color: #007BFF;
+  color: var(--dark-blue-100-hf);
 }
 
 #quiz-container {
   max-width: 400px;
+  position: relative;
   margin: 0 auto;
-  padding: 20px;
-  background-color: #f5f5f5;
+  padding: 1em;
+  background-color: var(--light-bg);
   border-radius: 8px;
 }
-summary::after {
-  content: "\f138"; /* Code de l'icône Font Awesome */
-  font-family: "Font Awesome 5 Free"; /* Famille de police de caractères de Font Awesome */
-  margin-right: 10px; /* Espace entre l'icône et le texte du résumé */
-  font-weight: bold; /* Pour assurer une meilleure lisibilité */
-}
 
-details summary::-webkit-details-marker,
-details summary::-moz-details-marker,
-details summary::before {
-  display: none; /* Masquer l'icône par défaut */
+#question {
+  font-size: larger;
+  padding: 1em;
+  border-radius: 0.5em;
+  color: var(--blue-hf);
+  background-color: var(--dark-blue-100-hf);
 }
 
 ul {
@@ -40,66 +67,326 @@ ul {
 
 li {
   cursor: pointer;
-  padding: 10px;
-  border: 1px solid #ccc;
-  margin: 30px;
+  padding: 0.7em;
+  border: 0.1em solid;
+  margin: 0.7em;
   border-radius: 5px;
-  transition: all ease 200ms;
+  text-transform: uppercase;
+  color: var(--light);
+  background: var(--dark-blue-100-hf);
+  &:hover {
+    background-color: var(--dark-blue-50-hf);
+  }
 }
-li:hover {
-  background-color: #ddd;
-}
-.active{
-  background-color: #ddd;
+.active {
+  color: var(--light);
+  background-color: var(--blue-hf);
+  border: none;
 }
 
+#score-container {
+  font-size: small;
+  color: var(--red-hf);
+  font-family: "Press Start 2P";
+  text-transform: uppercase;
+  .score {
+    color: var(--dark-blue-100-hf);
+  }
+}
 
-/* css du button permet d'afficher la liste des scrore */
-#listScore{
+button {
+  border-radius: 5px;
+  border: 1px solid var(--dark-blue-100-hf);
+  padding: 0.6em 1.2em;
+  margin: 0.1em;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-weight: 400;
+  outline: none;
+  font-family: inherit;
+  color: var(--dark-blue-100-hf);
+  background-color: transparent;
   cursor: pointer;
-  border: 1px solid #ccc;
-  transition: all ease 200ms;
-  padding: 10px;
-  border-radius: 5px;
+  transition: border-color 0.25s;
+  &:hover {
+    color: var(--light);
+    background-color: var(--dark-blue-100-hf);
+  }
+}
+/*//////////////////////*/
+
+/*//////////Groupe de Boutton////////////*/
+.button-group-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    place-content: center;
+  }
+}
+/*//////////////////////*/
+
+/*////////Modal/////////*/
+.modal {
   display: none;
-}
-#listScore:hover{
-  background-color: #ddd;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(32, 32, 35, 0.5);
+  backdrop-filter: blur(1em);
+  -webkit-backdrop-filter: blur(1em);
+  -moz-backdrop-filter: blur(1em);
+  -ms-backdrop-filter: blur(1em);
+  -o-backdrop-filter: blur(1em);
+  transition: all 0.1s ease-in-out;
 
+  .modal-content {
+    width: 400px;
+    border: solid var(--yellow-hf);
+    color: var(--light);
+    font-weight: 400;
+    text-align: match-parent;
+    font-size: small;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: 500px;
+    transform: translate(-50%, -50%);
+    padding: 1em;
+    border-radius: 5px;
+    background-color: var(--dim-dark);
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .logo-hacktoberfest {
+        width: 200px;
+      }
+
+      .close-modal {
+        display: flex;
+        place-content: center;
+        place-items: center;
+        font-size: 5em;
+        cursor: pointer;
+
+        &:hover {
+          color: var(--red-hf);
+          border-color: var(--blue-hf);
+        }
+      }
+    }
+    .text-presentation {
+      padding: 1em;
+      margin: 0;
+    }
+  }
 }
 
-/* affichage de la liste des scores  */
-.score-container{
-  width: 400px;
-  height: 50px;
-  margin: 0 auto;
-  margin-top: 20px;
-  padding: 20px;
-  padding-top: 5px;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  /* display: none; */
-  opacity: 0;
-  transition: 1s ease-in;
-}
+.submit-modal {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(32, 32, 35, 0.5);
+  backdrop-filter: blur(1em);
+  -webkit-backdrop-filter: blur(1em);
+  -moz-backdrop-filter: blur(1em);
+  -ms-backdrop-filter: blur(1em);
+  -o-backdrop-filter: blur(1em);
+  transition: all 0.1s ease-in-out;
 
-#scoreDisplay{
-  overflow: auto;
-  /* background-color: red; */
-  width: 100%;
-  height: 200px;
+  .submit-modal-content {
+    width: 400px;
+    border: solid var(--yellow-hf);
+    color: var(--light);
+    font-weight: 400;
+    text-align: match-parent;
+    font-size: small;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: 500px;
+    transform: translate(-50%, -50%);
+    padding: 1em;
+    border-radius: 5px;
+    background-color: var(--dim-dark);
 
+    .submit-modal-header {
+      font-family: "Press Start 2P";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3em;
+    }
+    .close-submit-modal {
+      display: flex;
+      place-content: center;
+      place-items: center;
+      font-size: 5em;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--red-hf);
+      }
+    }
+    .text-presentation {
+      padding: 1em;
+      font-size: 2em;
+      margin: 0;
+    }
+  }
 }
-#scoreDisplay .score-item{
-  overflow: auto;
-  /* background-color: rgb(0, 81, 255); */
-  width: 95%;
-  margin: 5px auto;
-  height: 50px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  padding-top: 10px;
+/*//////////////////////*/
+
+/*//////////Responsive Design////////////*/
+@media (max-width: 475px) {
+  #quiz-container {
+    font-size: 0.7em;
+    height: 100vh;
+    max-width: 100vw;
+    display: flex;
+    border-radius: 0;
+    flex-direction: column;
+    justify-content: center;
+  }
+  button {
+    margin: 0.2em;
+  }
+  .modal {
+    background-color: var(--dim-dark);
+    .modal-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      width: 280px;
+      border: none;
+      background-color: none;
+      .text-presentation {
+        padding: 1em;
+      }
+      .modal-header {
+        gap: 0em;
+        width: 100%;
+        align-items: center;
+        justify-content: space-evenly;
+        .logo-hacktoberfest {
+          width: 200px;
+        }
+      }
+    }
+  }
+
+  .submit-modal{
+    background-color: var(--dim-dark);
+    .submit-modal-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      width: 250px;
+      border: none;
+      background-color: none;
+
+      .text-presentation {
+        padding: 0.3em;
+        font-size: medium;
+      }
+      .submit-modal-header {
+        font-size: large;
+        justify-content: center;
+      }
+    }
+  }
 }
-#scoreDisplay .score-item span:nth-child(3){
-  font-size: 12px;
+@media (max-width: 380px) {
+  #quiz-container {
+    width: 100vw;
+    display: flex;
+    border-radius: 0;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .button-group-container {
+    display: flex;
+    flex-direction: column;
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+/*//////////////////////*/
+
+/*//////////Dark Mode////////////*/
+@media (prefers-color-scheme: dark) {
+  :root {
+    background-color: var(--dim-dark);
+    color: var(--yellow-hf);
+  }
+
+  h1 {
+    color: var(--yellow-hf);
+  }
+
+  li {
+    color: var(--blue-hf);
+    background: var(--dark-blue-50-hf);
+    border: 0.1em solid var(--yellow-hf);
+    &:hover {
+      color: var(--dark-blue-50-hf);
+      background-color: var(--yellow-hf);
+    }
+  }
+
+  #quiz-container {
+    background-color: var(--dark-blue-100-hf);
+  }
+
+  #question {
+    color: var(--light);
+    background-color: var(--dark-blue-50-hf);
+  }
+
+  .active {
+    color: var(--dark-blue-50-hf);
+    background-color: var(--yellow-hf);
+    border: none;
+  }
+
+  #score-container {
+    color: var(--red-hf);
+    .score {
+      color: var(--yellow-hf);
+    }
+  }
+
+  button {
+    border: 1px solid var(--dark-blue-50-hf);
+    color: var(--blue-hf);
+  }
+  button:hover {
+    border-color: var(--blue-hf);
+  }
 }

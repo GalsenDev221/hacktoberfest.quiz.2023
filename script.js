@@ -30,6 +30,26 @@ const questions = [
 		correctAnswer: 0,
 	},
   {
+    question: "Quelle est la période du Hacktoberfest durant l'annee ?",
+    label:'',
+    options: ["Octobre", "Décembre", "Mai", "Août"],
+    correctAnswer: [0],
+  },
+  {
+    question: "Où pouvez-vous contribuer pour participer au Hacktoberfest ?",
+    label:'',
+    options: ["AWS", "Facebook", "GitHub", "DigitaOcean"],
+    correctAnswer: [2],
+  },
+  {
+    question:
+      "Combien de contributions sont nécessaires pour valider le Hacktoberfest ?",
+      label:'',
+
+    options: ["10", "2", "6", "4"],
+    correctAnswer: [3],
+  },
+  {
     question:
       "Quelles sont les deux langues officielles du Canada ? (choix multiple)",
     options: ["Français", "Anglais", "Espagnol", "Allemand"],
@@ -37,8 +57,17 @@ const questions = [
   },
   {
     question: "Est-ce ce que GitLab participe au Hacktoberfest ?",
+    label:'',
+
     options: ["Oui", "Non"],
-    correctAnswer: 0,
+    correctAnswer: [0],
+  }, 
+  {
+    question: "Quels sont les developpeurs sénégalais qui participent au Hacktoberfest ?",
+    label:'Choix multiples',
+
+    options: ["Daouda", "Malick","Moustapha","khadim"],
+    correctAnswer: [0,3],
   },
   {
     question: "Quel est l'objectif principal du Hacktoberfest ?",
@@ -71,31 +100,26 @@ const questions = [
   },
 ];
 
-
-function sweetAlertEl() {
-  const btnEl=document.getElementById('btn-btn-envoyer')
-  btnEl.addEventListener('click',()=>{
-    Swal.fire(
-      'Merci!',
-      'vous avez repondu avec succée les questions!',
-    'success'
-    )
-  })
-}
-
 let currentQuestion = 0;
 let score = 0;
-let correctAnswers = 0;
-let numberOfClick = 0;
+let correctAnswers = 0
+let numberOfClick = 0
+let timeElapsed = 0;
+const rejouerBtn = document.querySelector('#rejouer');
 
 const questionElement = document.getElementById("question");
 const optionsElement = document.getElementById("options");
 const scoreElement = document.getElementById("score");
+const suivant=document.getElementById("suivant")
 
 function loadQuestion() {
-	const question = questions[currentQuestion];
-	questionElement.textContent = question.question;
-	optionsElement.innerHTML = "";
+  timeElapsed = 0;
+  const question = questions[currentQuestion];
+  questionElement.innerHTML = `${question.question}`;
+  if(question.label){
+    questionElement.innerHTML+= `<p>${question.label}</p>`;
+  }
+  optionsElement.innerHTML = "";
 
 	question.options.forEach((option, index) => {
 		const li = document.createElement("li");
@@ -145,9 +169,17 @@ function checkAnswer(selectedIndex, li) {
     });
     optionsElement.appendChild(li);
   });
+  checkTimeElapsed();
 }
-
-
+function handleActive(itemSelected){
+  const question = questions[currentQuestion];
+  if(!question.label)
+    document.querySelectorAll(".list-item").forEach(item=>{
+    item.classList.remove("active");
+  });
+  if(itemSelected.classList.contains("active")){
+    itemSelected.classList.remove("active");}
+  }
 function checkAnswer(selectedIndex, currentList) {
   const question = questions[currentQuestion];
 
@@ -176,6 +208,7 @@ function checkAnswer(selectedIndex, currentList) {
     }
     return;
   }
+
 
   if (selectedIndex === question.correctAnswer) {
     score++;
