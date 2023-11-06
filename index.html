@@ -3,16 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
     <title>Hacktoberfest Quiz 2023</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
-    <div id="quiz-container">
+    <div id="welcome-page">
+      <h1 class="welcome-title">Bienvenue au Quiz Hacktoberfest 2023</h1>
+      <p class="welcome-text">
+        Avant de commencer le quiz, voici une règle : vous devez obtenir au
+        moins 70% de bonnes réponses sur les 10 questions pour réussir. <br />
+        Bonne chance !
+      </p>
+      <button id="start-quiz">Commencer</button>
+    </div>
+
+    <div id="quiz-container" style="display: none">
       <h1>Quiz sur le Hacktoberfest</h1>
       <p id="question"></p>
       <ul id="options"></ul>
       <p>Score : <span id="score">0</span></p>
+      <button id="next-question">Passer</button>
+      <button id="learn-more">En savoir plus</button>
+    </div>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span id="close" class="close">&times;</span>
+        <h2>En savoir plus sur le Hacktoberfest</h2>
+        <p>
+          Le Hacktoberfest est l'événement annuel de DigitalOcean qui encourage
+          les gens à contribuer à l'open source tout au long du mois d'octobre.
+          Une grande partie de l'infrastructure technologique moderne, y compris
+          certains produits propres à DigitalOcean, repose sur des projets open
+          source construits et maintenus par des personnes passionnées qui n'ont
+          souvent pas le personnel ou les budgets nécessaires pour faire autre
+          chose que maintenir le projet en vie. <br />
+          Le Hacktoberfest a pour objectif de redonner à ces projets, d'affiner
+          les compétences et de célébrer tout ce qui concerne l'open source, en
+          particulier les personnes qui rendent l'open source si spécial. Au
+          cours des 10 dernières années, des milliers de personnes, codeurs et
+          non-codeurs, ont participé au Hacktoberfest pour soutenir les projets
+          qu'ils utilisent et aiment, acquérir et mettre en pratique des
+          compétences qui amélioreront leur carrière et rencontrer de nouvelles
+          personnes qui aiment autant l'open source. comme ils le font.
+        </p>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>
