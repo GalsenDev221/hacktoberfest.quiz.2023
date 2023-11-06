@@ -3,86 +3,56 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hacktoberfest Quiz 2023</title>
+    <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-
-    <link rel="stylesheet" href="style.css" />
-    <title>Hacktoberfest Quiz 2023</title>
   </head>
 
   <body>
-    <div id="quiz-container">
+    <div id="welcome-page">
+      <h1 class="welcome-title">Bienvenue au Quiz Hacktoberfest 2023</h1>
+      <p class="welcome-text">
+        Avant de commencer le quiz, voici une règle : vous devez obtenir au
+        moins 70% de bonnes réponses sur les 10 questions pour réussir. <br />
+        Bonne chance !
+      </p>
+      <button id="start-quiz">Commencer</button>
+    </div>
+
+    <div id="quiz-container" style="display: none">
       <h1>Quiz sur le Hacktoberfest</h1>
       <p id="question"></p>
       <ul id="options"></ul>
-      <p id="score-container">
-        Score : <span id="score" class="score">0</span>
-      </p>
-      <div class="button-group-container">
-        <button id="rejouer" class="button">Rejouer</button>
-        <button id="reset-button">Réinitialiser</button>
-        <button id="suivant">Suivant</button>
-        <div class="button-group">
-          <button id="open-submit-modal-button">Envoyer</button>
-          <button id="open-modal-button">
-            En savoir plus sur Hacktoberfest <img src="./assets/info.svg" alt="">
-          </button>
-        </div>
-      </div>
-
-      <div id="submit-modal" class="submit-modal">
-        <div class="submit-modal-content">
-          <h2 class="submit-modal-header">Merci!</h2>
-          <p class="text-presentation">
-            vous avez repondu avec succès à <span id="score-placeholder"></span> questions!
-          </p>
-
-          <span id="close-submit-modal" class="close-submit-modal">&times;</span>
-        </div>
-
-      </div>
-
-      <div id="modal" class="modal">
-        <div class="modal-content">
-          <div class="modal-header">
-            <img
-              src="/assets/logo-hacktoberfest--horizontal.ebc5fdc8.svg"
-              alt="logo-hacktoberfest"
-              class="logo-hacktoberfest"
-              loading="lazy"
-            />
-            <span id="close-modal" class="close-modal">&times;</span>
-          </div>
-          <p class="text-presentation">
-            Le Hacktoberfest est l'événement annuel de DigitalOcean qui
-            encourage les gens à contribuer à l'open source tout au long du mois
-            d'octobre. Une grande partie de l'infrastructure technologique
-            moderne, y compris certains produits propres à DigitalOcean, repose
-            sur des projets open source construits et maintenus par des
-            personnes passionnées qui n'ont souvent pas le personnel ou les
-            budgets nécessaires pour faire autre chose que maintenir le projet
-            en vie. <br />
-            <br />Le Hacktoberfest a pour objectif de redonner à ces projets,
-            d'affiner les compétences et de célébrer tout ce qui concerne l'open
-            source, en particulier les personnes qui rendent l'open source si
-            spécial. Au cours des 10 dernières années, des milliers de
-            personnes, codeurs et non-codeurs, ont participé au Hacktoberfest
-            pour soutenir les projets qu'ils utilisent et aiment, acquérir et
-            mettre en pratique des compétences qui amélioreront leur carrière et
-            rencontrer de nouvelles personnes qui aiment autant l'open source.
-            comme ils le font.
-          </p>
-        </div>
+      <p>Score : <span id="score">0</span></p>
+      <button id="next-question">Passer</button>
+      <button id="learn-more">En savoir plus</button>
+    </div>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span id="close" class="close">&times;</span>
+        <h2>En savoir plus sur le Hacktoberfest</h2>
+        <p>
+          Le Hacktoberfest est l'événement annuel de DigitalOcean qui encourage
+          les gens à contribuer à l'open source tout au long du mois d'octobre.
+          Une grande partie de l'infrastructure technologique moderne, y compris
+          certains produits propres à DigitalOcean, repose sur des projets open
+          source construits et maintenus par des personnes passionnées qui n'ont
+          souvent pas le personnel ou les budgets nécessaires pour faire autre
+          chose que maintenir le projet en vie. <br />
+          Le Hacktoberfest a pour objectif de redonner à ces projets, d'affiner
+          les compétences et de célébrer tout ce qui concerne l'open source, en
+          particulier les personnes qui rendent l'open source si spécial. Au
+          cours des 10 dernières années, des milliers de personnes, codeurs et
+          non-codeurs, ont participé au Hacktoberfest pour soutenir les projets
+          qu'ils utilisent et aiment, acquérir et mettre en pratique des
+          compétences qui amélioreront leur carrière et rencontrer de nouvelles
+          personnes qui aiment autant l'open source. comme ils le font.
+        </p>
       </div>
     </div>
     <script src="script.js"></script>

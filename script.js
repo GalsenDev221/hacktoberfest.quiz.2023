@@ -1,330 +1,191 @@
 const questions = [
-	{
-		question: "Quelle est la période du Hacktoberfest durant l'annee ?",
-		options: ["Octobre", "Décembre", "Mai", "Août"],
-		correctAnswer: 0,
-	},
-	{
-		question: "Où pouvez-vous contribuer pour participer au Hacktoberfest ?",
-		options: ["AWS", "Facebook", "GitHub", "DigitalOcean"],
-		correctAnswer: 2,
-	},
-	{
-		question: "Combien de contributions sont nécessaires pour valider le Hacktoberfest ?",
-		options: ["10", "2", "6", "4"],
-		correctAnswer: 3,
-	},
-	{
-		question: "Quelles sont les deux langues officielles du Canada ? (choix multiple)",
-		options: ["Français", "Anglais", "Espagnol", "Allemand"],
-		correctAnswer: [0, 1],
-	},
-	{
-		question: "Est-ce ce que GitLab participe au Hacktoberfest ?",
-		options: ["Oui", "Non"],
-		correctAnswer: 0,
-	},
-	{
-		question: "Quelle est la durée du Hacktoberfest ?",
-		options: ["Un mois", "Deux mois", "Six mois", "Troix mois"],
-		correctAnswer: 0,
-	},
   {
-    question: "Quelle est la période du Hacktoberfest durant l'annee ?",
-    label:'',
+    question: "Quelle est la période du Hacktoberfest durant l'année ?",
     options: ["Octobre", "Décembre", "Mai", "Août"],
-    correctAnswer: [0],
+    correctAnswer: 0,
   },
   {
     question: "Où pouvez-vous contribuer pour participer au Hacktoberfest ?",
     options: ["AWS", "Facebook", "GitHub", "DigitalOcean"],
     correctAnswer: 2,
-    label:'',
-    options: ["AWS", "Facebook", "GitHub", "DigitalOcean"],
-    correctAnswer: [2],
   },
   {
     question:
       "Combien de contributions sont nécessaires pour valider le Hacktoberfest ?",
-      label:'',
-
     options: ["10", "2", "6", "4"],
-    correctAnswer: [3],
-  },
-  {
-    question:
-      "Quelles sont les deux langues officielles du Canada ? (choix multiple)",
-    options: ["Français", "Anglais", "Espagnol", "Allemand"],
-    correctAnswer: [0, 1],
+    correctAnswer: 3,
   },
   {
     question: "Est-ce ce que GitLab participe au Hacktoberfest ?",
-    label:'',
     options: ["Oui", "Non"],
-    correctAnswer: [0],
-  }, 
+    correctAnswer: 0,
+  },
   {
-    question: "Quels sont les developpeurs sénégalais qui participent au Hacktoberfest ?",
-    label:'Choix multiples',
-
-    options: ["Daouda", "Malick","Moustapha","Khadim"],
-    correctAnswer: [0,3],
+    question: "Quelle est la durée du Hacktoberfest ?",
+    options: ["1 mois", "2 mois", "15 jours", "Ca depend"],
+    correctAnswer: 0,
+  },
+  {
+    question:
+      "Quelle est la principale motivation des contributeurs pendant le Hacktoberfest ?",
+    options: [
+      "Gagner de l'argent",
+      "Acquérir de l'expérience",
+      "Trouver un emploi",
+      "Se détendre",
+    ],
+    correctAnswer: 1,
+  },
+  {
+    question: "Combien de fois par an se déroule le Hacktoberfest ?",
+    options: ["Une fois", "Deux fois", "Quatre fois", "Tous les mois"],
+    correctAnswer: 0,
   },
   {
     question: "Quel est l'objectif principal du Hacktoberfest ?",
     options: [
       "Célébrer Halloween",
-      "Promouvoir la consommation de citrouilles",
+      "Promouvoir GitHub et GitLab",
       "Encourager la contribution à des projets open source",
+      "Faire de événements",
     ],
     correctAnswer: 2,
   },
   {
-    question: "Quelle societe a cree le hacktoberfest ?",
-    options: ["DigitalOcean", "Microsoft", "galsenDev", "xarala"],
-    correctAnswer: 0,
-  },
-  {
-    question: "Combien de temps dure l'evenement Hacktoberfest ?",
-    options: ["1 ans", "1 mois", "1 week-end"],
-    correctAnswer: 1,
-  },
-  {
-    question: "Il reste combien de jours pour valider le Hacktoberfest actuel ?",
-    options: [31 - new Date().getDate(), "2", "8", "20"],
-    correctAnswer: 0,
-  },
-  {
     question: "En qu'elle année le Hacktoberfest a commencé ?",
-    options: ["2013", "2015", "2018", "2010"],
-    correctAnswer: 0,
-  },
-  {
-    question: "Hacktoberfest ne peut-il pas avoir  lieu chaque 3 mois?",
-    options: ["Possible", "Non"],
-    correctAnswer: 0,
-  },
-  {
-    question : "Comment sauvegarder périodiquement vos bases de données sur Git ?",
-    options : ["Créer une archive de notre application", "Créer un fichier de configuration SQL"],
+    options: ["2010", "2013", "2018", "2021"],
     correctAnswer: 1,
   },
   {
-    question : "Comment mettre une application héritée dans Git ?",
-    options :["Créer un fichier de configuration SQL", "Télécharger le code source dans un référentiel GitLab"],
-    correctAnswer: 1,
+    question: "Est ce que tout le monde peut participer au Hacktoberfest ?",
+    options: ["Oui", "Non"],
+    correctAnswer: 0,
   },
 ];
 
-function sweetAlertEl() {
-  const btnEl=document.getElementById('btn-btn-envoyer')
-  btnEl.addEventListener('click',()=>{
-    Swal.fire(
-      'Merci!',
-      'vous avez repondu avec succès les questions!',
-    'success'
-    )
-  })
-}
-
 let currentQuestion = 0;
 let score = 0;
-let correctAnswerCounter = 0;
-let correctAnswers = 0
-let timeElapsed = 0;
-const rejouerBtn = document.querySelector('#rejouer');
+let userHasAnswered = false;
+let quizStarted = false;
 
 const questionElement = document.getElementById("question");
 const optionsElement = document.getElementById("options");
 const scoreElement = document.getElementById("score");
-const suivant=document.getElementById("suivant")
+const nextQuestionButton = document.getElementById("next-question");
+const learnMoreButton = document.getElementById("learn-more");
+const modal = document.getElementById("modal");
+const closeButton = document.getElementsByClassName("close")[0];
+const replayButton = document.getElementById("replay");
+
+const welcomePage = document.getElementById("welcome-page");
+const startQuizButton = document.getElementById("start-quiz");
+const congratulationMessage =
+  "Félicitations ! Vous avez réussi le quiz avec plus de 70% de bonnes réponses.";
+
+startQuizButton.addEventListener("click", function () {
+  welcomePage.style.display = "none";
+  document.getElementById("quiz-container").style.display = "block";
+  quizStarted = true;
+  loadQuestion();
+});
+
+nextQuestionButton.addEventListener("click", function () {
+  if (quizStarted) {
+    if (currentQuestion < questions.length) {
+      if (userHasAnswered) {
+        loadNextQuestion();
+      } else {
+        currentQuestion++;
+        loadNextQuestion();
+      }
+      userHasAnswered = false;
+    } else {
+      restartQuiz();
+    }
+  }
+});
 
 function loadQuestion() {
-  timeElapsed = 0;
-  const question = questions[currentQuestion];
-  questionElement.innerHTML = `${question.question}`;
-  if(question.label){
-    questionElement.innerHTML+= `<p>${question.label}</p>`;
-  }
-  optionsElement.innerHTML = "";
+  if (quizStarted) {
+    const question = questions[currentQuestion];
+    questionElement.textContent = question.question;
+    optionsElement.innerHTML = "";
 
-	question.options.forEach((option, index) => {
-		const li = document.createElement("li");
-		li.textContent = option;
-		li.addEventListener("click", () => checkAnswer(index, li));
-		optionsElement.appendChild(li);
-	});
-}
-
-function checkAnswer(selectedIndex, li) {
-	const question = questions[currentQuestion];
-
-	if (Array.isArray(question.correctAnswer)) {
-		numberOfClick++;
-		li.classList.add("active");
-		if (question.correctAnswer.includes(selectedIndex)) {
-			correctAnswers++;
-      li.style.backgroundColor = "#57F287";
-		} else{
-      li.style.backgroundColor = '#FD6D72';
-    }
-		if (numberOfClick === question.correctAnswer.length) {
-			if (correctAnswers === question.correctAnswer.length) {
-				score++;
-				scoreElement.textContent = score;
-			}
-			numberOfClick = 0;
-			correctAnswers = 0;
-			currentQuestion++;
-			if (currentQuestion < questions.length) {
-				setTimeout(loadQuestion, 1000);
-			} else {
-				quizFinished();
-			}
-		}
-		return;
-	}
-
-	if (selectedIndex === question.correctAnswer) {
-		score++;
-		scoreElement.textContent = score;
-    li.style.backgroundColor = "#57F287";
-	} else{
-    li.style.backgroundColor = '#FD6D72';
-	}
-  question.options.forEach((option, index) => {
-    const li = document.createElement("li");
-    li.textContent = option;
-    li.addEventListener("click", function () {
-      return checkAnswer(index, this);
+    question.options.forEach((option, index) => {
+      const li = document.createElement("li");
+      li.textContent = option;
+      li.addEventListener("click", () => checkAnswer(index));
+      optionsElement.appendChild(li);
     });
-    optionsElement.appendChild(li);
-  });
-  checkTimeElapsed();
-}
-function handleActive(itemSelected){
-  const question = questions[currentQuestion];
-  if(!question.label)
-    document.querySelectorAll(".list-item").forEach(item=>{
-    item.classList.remove("active");
-  });
-  if(itemSelected.classList.contains("active")){
-    itemSelected.classList.remove("active");}
   }
-	const question = questions[currentQuestion];
-	if (!question.label)
-		document.querySelectorAll(".list-item").forEach((item) => {
-			item.classList.remove("active");
-		});
-	if (itemSelected.classList.contains("active")) {
-		itemSelected.classList.remove("active");
-	}
 }
 
-function checkAnswer(selectedIndex, currentList) {
-  const question = questions[currentQuestion];
+function checkAnswer(selectedIndex) {
+  if (quizStarted) {
+    // Vérifier que le quiz a commencé
+    const question = questions[currentQuestion];
 
-  if (Array.isArray(question.correctAnswer)) {
-    numberOfClick++;
-    currentList.classList.add("active");
+    if (selectedIndex === question.correctAnswer) {
+      score++;
+    }
 
-    if (question.correctAnswer.includes(selectedIndex)) {
-      correctAnswerCounter++
+    currentQuestion++;
+    updateScore();
+    userHasAnswered = true;
+
+    if (currentQuestion < questions.length) {
+      loadNextQuestion();
+    } else {
+      displayResult();
     }
-    if (numberOfClick === question.correctAnswer.length) {
-      if (correctAnswerCounter === question.correctAnswer.length) {
-        score++
-        scoreElement.innerText = score
-      }
-      numberOfClick = 0
-      correctAnswerCounter = 0
-      correctAnswers++;
-    }
-    if (numberOfClick === question.correctAnswer.length) {
-      if (correctAnswers === question.correctAnswer.length) {
-        score++;
-        scoreElement.innerText = score;
-      }
-      numberOfClick = 0;
-      correctAnswers = 0;
-      currentQuestion++;
-      if (currentQuestion < questions.length) {
-        loadQuestion();
-      } else {
-        questionElement.textContent = "Quiz terminé ! Votre score :";
-        optionsElement.innerHTML = "";
-        scoreElement.textContent = score;
-      }
-    }
-    return;
   }
+}
 
-  if (selectedIndex === question.correctAnswer) {
-    score++;
-    scoreElement.innerText = score;
-  }
-
-	currentQuestion++;
-
-  if (currentQuestion < questions.length) {
-    loadQuestion();
+function displayResult() {
+  if (score / questions.length >= 0.7) {
+    // Vérifiez si le score est supérieur ou égal à 70%
+    questionElement.textContent = "Quiz terminé ! Votre score :";
+    optionsElement.innerHTML = congratulationMessage;
   } else {
     questionElement.textContent = "Quiz terminé ! Votre score :";
-    optionsElement.innerHTML = "";
-    scoreElement.textContent = score;
-    // affichage de la liste des scores
-    document.getElementById("listScore").style.display = "block";
-    scoreSave(score);
+    optionsElement.innerHTML =
+      "Désolé, vous n'avez pas réussi le quiz. Vous avez obtenu moins de 70% de bonnes réponses.";
   }
+  nextQuestionButton.textContent = "Rejouer";
+  replayButton.style.display = "block";
+}
+
+function loadNextQuestion() {
+  loadQuestion();
+}
+
+learnMoreButton.addEventListener("click", function () {
+  openModal();
+});
+
+closeButton.addEventListener("click", function () {
+  closeModal();
+});
+
+function openModal() {
+  modal.style.display = "block";
+}
+
+function closeModal() {
+  modal.style.display = "none";
+}
+
+function restartQuiz() {
+  currentQuestion = 0;
+  score = 0;
+  updateScore();
+  loadQuestion();
+  nextQuestionButton.textContent = "Passer";
+  replayButton.style.display = "none";
+}
+
+function updateScore() {
+  scoreElement.textContent = `${score}`;
 }
 
 loadQuestion();
-	if (currentQuestion < questions.length) {
-		setTimeout(loadQuestion, 1000);
-	} else {
-		quizFinished();
-	}
-}
-
-function quizFinished() {
-	questionElement.textContent = "Quiz terminé ! Votre score :";
-	optionsElement.innerHTML = "";
-	scoreElement.textContent = score;
-}
-const resetButton = document.getElementById("reset-button");
-
-// gestion de scores
-function scoreSave(score) {
-  let scoreObject = {
-    score: score,
-    date: new Date(),
-  };
-  if (
-    localStorage.getItem("scores") == null ||
-    localStorage.getItem("scores") == undefined
-  ) {
-    localStorage.setItem("scores", JSON.stringify([scoreObject]));
-  } else {
-    let tabTmp = JSON.parse(localStorage.getItem("scores"));
-    tabTmp.push(scoreObject);
-    localStorage.setItem("scores", JSON.stringify(tabTmp));
-  }
-}
-
-// affchage du des scores
-let scoreDisplay = document.getElementById("scoreDisplay");
-function displaySavedScores() {
-  document.querySelector(".score-container").style.opacity = "1";
-  document.querySelector(".score-container").style.height = "300px";
-  scoreDisplay.innerHTML = "";
-  let tabTmp = JSON.parse(localStorage.getItem("scores"));
-  tabTmp.forEach((element) => {
-    let localDate=new Date(element.date);
-    scoreDisplay.innerHTML += `
-        <div class="score-item">
-          <span>Score : ${element.score}</span> <br>
-          <span>Le ${localDate.getDate()}-${localDate.getMonth()}-${localDate.getFullYear()} à ${localDate.getHours()}h:${localDate.getMinutes()}min</span>
-        </div>
-    `;
-  });
-}
